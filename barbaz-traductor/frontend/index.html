@@ -1,229 +1,393 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BarBaZ Traductor — Traducción Jurídica Profesional</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarBaZ Traductor — Traducción Jurídica Profesional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container header-inner">
-      <div class="logo">
-        <div class="logo-mark">BB</div>
-        <div class="logo-text">
-          <span class="logo-name">BarBaZ</span>
-          <span class="logo-sub">TRADUCTOR</span>
-        </div>
-      </div>
-      <nav class="nav">
-        <a href="#inicio" class="nav-link">Inicio</a>
-        <a href="#traductor" class="nav-link">Traducir</a>
-        <a href="#acerca" class="nav-link">Acerca de</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="container hero-inner">
-      <div class="hero-badge">Plataforma Jurídica Profesional</div>
-      <h1 class="hero-title">Traducción de Documentos<br /><em>Legales de Precisión</em></h1>
-      <p class="hero-desc">Traduce contratos, sentencias, normativas y casos legales con terminología jurídica exacta. Diseñado para abogados y profesionales del derecho.</p>
-      <a href="#traductor" class="btn-primary">Comenzar Traducción</a>
-    </div>
-    <div class="hero-overlay"></div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="container features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⚖️</div>
-        <h3>Precisión Jurídica</h3>
-        <p>Terminología legal exacta con preservación de estructura normativa y numeración de cláusulas.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📄</div>
-        <h3>Multi-Formato</h3>
-        <p>Compatible con PDF, DOCX y TXT. Sube tu documento y recibe la traducción al instante.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📚</div>
-        <h3>Glosario Jurídico</h3>
-        <p>Cada traducción incluye un glosario de términos legales clave con su equivalente en español.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🌍</div>
-        <h3>8 Idiomas</h3>
-        <p>Inglés, Francés, Italiano, Portugués, Alemán, Árabe, Chino y Japonés → Español.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRANSLATOR -->
-  <section class="translator-section" id="traductor">
-    <div class="container">
-      <div class="section-header">
-        <h2>Módulo de Traducción</h2>
-        <p>Selecciona el modo de entrada y el idioma origen</p>
-      </div>
-
-      <!-- TABS -->
-      <div class="tabs">
-        <button class="tab active" data-tab="text">Texto Libre</button>
-        <button class="tab" data-tab="file">Documento</button>
-      </div>
-
-      <!-- LANGUAGE SELECT -->
-      <div class="lang-bar">
-        <div class="lang-group">
-          <label>Idioma Origen</label>
-          <select id="sourceLang">
-            <option value="auto">Detectar automáticamente</option>
-            <option value="English">Inglés</option>
-            <option value="French">Francés</option>
-            <option value="Italian">Italiano</option>
-            <option value="Portuguese">Portugués</option>
-            <option value="German">Alemán</option>
-            <option value="Arabic">Árabe</option>
-            <option value="Chinese">Chino</option>
-            <option value="Japanese">Japonés</option>
-          </select>
-        </div>
-        <div class="lang-arrow">→</div>
-        <div class="lang-group">
-          <label>Idioma Destino</label>
-          <div class="lang-fixed">Español</div>
-        </div>
-      </div>
-
-      <!-- TEXT TAB -->
-      <div class="tab-panel active" id="panel-text">
-        <div class="editor-grid">
-          <div class="editor-box">
-            <div class="editor-label">Documento Original</div>
-            <textarea id="inputText" placeholder="Pegue aquí el texto del documento legal a traducir..."></textarea>
-            <div class="editor-footer">
-              <span id="inputWordCount">0 palabras</span>
-              <button class="btn-clear" onclick="clearAll()">Limpiar</button>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <div class="logo">
+                    <div class="logo-monogram">BB</div>
+                    <div class="logo-text">
+                        <span class="logo-name">BarBaZ</span>
+                        <span class="logo-subtitle">TRADUCTOR</span>
+                    </div>
+                </div>
+                <nav class="main-nav">
+                    <a href="#inicio" class="nav-link active" data-section="inicio">Inicio</a>
+                    <a href="#traducir" class="nav-link" data-section="traducir">Traducir</a>
+                    <a href="#glosario" class="nav-link" data-section="glosario">Glosario</a>
+                    <a href="#acerca" class="nav-link" data-section="acerca">Acerca de</a>
+                </nav>
+                <button class="nav-toggle" aria-label="Menú" id="navToggle">
+                    <span></span><span></span><span></span>
+                </button>
             </div>
-          </div>
-          <div class="editor-box">
-            <div class="editor-label">Traducción al Español</div>
-            <div id="outputText" class="output-area"><span class="placeholder-text">La traducción aparecerá aquí...</span></div>
-            <div class="editor-footer">
-              <span id="outputWordCount">0 palabras</span>
-              <button class="btn-copy" onclick="copyTranslation()" id="copyBtn" disabled>Copiar</button>
-              <button class="btn-download" onclick="downloadTxt()" id="downloadTxtBtn" disabled>Descargar .txt</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Traducción Jurídica con IA</div>
+                <h1 class="hero-title">Traducción Precisa de<br><em>Documentos Jurídicos</em></h1>
+                <p class="hero-description">
+                    BarBaZ Traductor emplea inteligencia artificial especializada para traducir
+                    contratos, escrituras, resoluciones y documentos legales con total fidelidad
+                    terminológica y preservación de la estructura normativa.
+                </p>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">⚖️</div>
+                        <span>Terminología Jurídica Precisa</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📄</div>
+                        <span>PDF, DOCX y TXT</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌐</div>
+                        <span>8 Idiomas al Español</span>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📚</div>
+                        <span>Glosario Automático</span>
+                    </div>
+                </div>
+                <a href="#traducir" class="btn btn-primary btn-lg hero-cta">Comenzar Traducción</a>
             </div>
-          </div>
         </div>
-        <div class="translate-bar">
-          <button class="btn-translate" id="btnTranslateText" onclick="translateText()">
-            <span class="btn-icon">⚖️</span> Traducir Documento
-          </button>
-        </div>
-      </div>
+        <div class="hero-decoration"></div>
+    </section>
 
-      <!-- FILE TAB -->
-      <div class="tab-panel" id="panel-file">
-        <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
-          <div class="dropzone-icon">📂</div>
-          <p class="dropzone-title">Arrastra tu documento aquí</p>
-          <p class="dropzone-sub">o haz clic para seleccionar</p>
-          <p class="dropzone-formats">PDF · DOCX · TXT — máximo 10 MB</p>
-          <input type="file" id="fileInput" accept=".pdf,.docx,.doc,.txt" hidden />
-        </div>
-        <div id="fileInfo" class="file-info hidden">
-          <span id="fileName"></span>
-          <button class="btn-clear-file" onclick="clearFile()">✕</button>
-        </div>
-        <div class="translate-bar">
-          <button class="btn-translate" id="btnTranslateFile" onclick="translateFile()" disabled>
-            <span class="btn-icon">⚖️</span> Traducir Documento
-          </button>
-        </div>
-      </div>
-
-      <!-- LOADER -->
-      <div class="loader-overlay hidden" id="loader">
-        <div class="loader-box">
-          <div class="spinner"></div>
-          <p>Procesando traducción jurídica...</p>
-          <small>Esto puede tomar unos segundos</small>
-        </div>
-      </div>
-
-      <!-- RESULTS -->
-      <div class="results hidden" id="results">
-        <div class="results-meta">
-          <div class="meta-chip" id="metaLang"></div>
-          <div class="meta-chip" id="metaWords"></div>
-        </div>
-
-        <div class="result-translated hidden" id="resultFileSection">
-          <div class="result-header">
-            <h3>Texto Traducido</h3>
-            <div class="result-actions">
-              <button class="btn-copy" onclick="copyResult()">Copiar</button>
-              <button class="btn-download" onclick="downloadResult()">Descargar .txt</button>
+    <!-- Translator Section -->
+    <section class="translator-section" id="traducir">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Traductor Jurídico</h2>
+                <p class="section-subtitle">Seleccione el método de traducción que mejor se adapte a sus necesidades</p>
             </div>
-          </div>
-          <div class="result-body" id="resultBody"></div>
+
+            <!-- Tabs -->
+            <div class="translator-card">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="text">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Texto
+                    </button>
+                    <button class="tab-btn" data-tab="document">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        Documento
+                    </button>
+                </div>
+
+                <!-- Text Tab -->
+                <div class="tab-content active" id="tab-text">
+                    <div class="language-bar">
+                        <div class="lang-select-wrapper">
+                            <label class="lang-label">Idioma de origen</label>
+                            <select class="lang-select" id="textSourceLang">
+                                <option value="English">Inglés</option>
+                                <option value="French">Francés</option>
+                                <option value="Italian">Italiano</option>
+                                <option value="Portuguese">Portugués</option>
+                                <option value="German">Alemán</option>
+                                <option value="Arabic">Árabe</option>
+                                <option value="Chinese">Chino</option>
+                                <option value="Japanese">Japonés</option>
+                            </select>
+                        </div>
+                        <div class="lang-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </div>
+                        <div class="lang-target">
+                            <label class="lang-label">Idioma de destino</label>
+                            <div class="lang-fixed">🇪🇸 Español</div>
+                        </div>
+                    </div>
+
+                    <div class="text-panels">
+                        <div class="text-panel">
+                            <div class="panel-header">
+                                <span class="panel-label">Texto original</span>
+                                <span class="char-count" id="charCount">0 caracteres</span>
+                            </div>
+                            <textarea
+                                class="text-input"
+                                id="sourceText"
+                                placeholder="Ingrese aquí el texto jurídico a traducir. Por ejemplo: contracts, agreements, legal clauses, court rulings, notarial deeds..."
+                                rows="14"
+                            ></textarea>
+                            <div class="panel-footer">
+                                <button class="btn btn-ghost btn-sm" id="clearTextBtn">Limpiar</button>
+                                <button class="btn btn-primary" id="translateTextBtn">
+                                    Traducir
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="text-panel">
+                            <div class="panel-header">
+                                <span class="panel-label">Traducción al español</span>
+                                <div class="panel-actions">
+                                    <button class="icon-btn" id="copyTranslationBtn" title="Copiar traducción" style="display:none">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="translation-output" id="translationOutput">
+                                <div class="output-placeholder">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                                    <p>La traducción aparecerá aquí</p>
+                                </div>
+                            </div>
+                            <div class="panel-footer" id="textResultFooter" style="display:none">
+                                <div class="result-meta">
+                                    <span class="meta-badge" id="detectedLangBadge"></span>
+                                    <span class="meta-badge" id="wordCountBadge"></span>
+                                </div>
+                                <button class="btn btn-secondary btn-sm" id="downloadTextBtn">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                    Descargar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Document Tab -->
+                <div class="tab-content" id="tab-document">
+                    <div class="language-bar">
+                        <div class="lang-select-wrapper">
+                            <label class="lang-label">Idioma del documento</label>
+                            <select class="lang-select" id="fileSourceLang">
+                                <option value="English">Inglés</option>
+                                <option value="French">Francés</option>
+                                <option value="Italian">Italiano</option>
+                                <option value="Portuguese">Portugués</option>
+                                <option value="German">Alemán</option>
+                                <option value="Arabic">Árabe</option>
+                                <option value="Chinese">Chino</option>
+                                <option value="Japanese">Japonés</option>
+                            </select>
+                        </div>
+                        <div class="lang-arrow">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </div>
+                        <div class="lang-target">
+                            <label class="lang-label">Idioma de destino</label>
+                            <div class="lang-fixed">🇪🇸 Español</div>
+                        </div>
+                    </div>
+
+                    <div class="upload-zone" id="uploadZone">
+                        <input type="file" id="fileInput" accept=".pdf,.docx,.txt" hidden>
+                        <div class="upload-icon">
+                            <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                        </div>
+                        <h3 class="upload-title">Arrastre su documento aquí</h3>
+                        <p class="upload-subtitle">o haga clic para seleccionar un archivo</p>
+                        <div class="upload-formats">
+                            <span class="format-tag">PDF</span>
+                            <span class="format-tag">DOCX</span>
+                            <span class="format-tag">TXT</span>
+                        </div>
+                        <p class="upload-limit">Tamaño máximo: 10 MB</p>
+                    </div>
+
+                    <div class="file-selected" id="fileSelected" style="display:none">
+                        <div class="file-info">
+                            <div class="file-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            </div>
+                            <div class="file-details">
+                                <span class="file-name" id="selectedFileName"></span>
+                                <span class="file-size" id="selectedFileSize"></span>
+                            </div>
+                            <button class="icon-btn remove-file" id="removeFileBtn" title="Eliminar archivo">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            </button>
+                        </div>
+                        <button class="btn btn-primary btn-lg" id="translateFileBtn" style="width:100%;margin-top:1rem">
+                            Traducir Documento
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- File Result -->
+                    <div class="file-result" id="fileResult" style="display:none">
+                        <div class="result-header">
+                            <h3 class="result-title">Traducción completada</h3>
+                            <div class="result-badges">
+                                <span class="meta-badge" id="fileDetectedLang"></span>
+                                <span class="meta-badge" id="fileWordCount"></span>
+                                <span class="meta-badge" id="fileNameBadge"></span>
+                            </div>
+                        </div>
+                        <div class="result-text" id="fileTranslationText"></div>
+                        <div class="result-actions">
+                            <button class="btn btn-secondary" id="copyFileTranslationBtn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                Copiar
+                            </button>
+                            <button class="btn btn-primary" id="downloadFileBtn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Descargar .txt
+                            </button>
+                            <button class="btn btn-ghost" id="newTranslationBtn">Nueva Traducción</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div class="loading-overlay" id="loadingOverlay" style="display:none">
+                <div class="loading-card">
+                    <div class="spinner"></div>
+                    <h3 class="loading-title">Procesando traducción</h3>
+                    <p class="loading-subtitle" id="loadingMessage">Analizando el documento jurídico...</p>
+                </div>
+            </div>
+
+            <!-- Error Alert -->
+            <div class="alert alert-error" id="errorAlert" style="display:none">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                <span id="errorMessage"></span>
+                <button class="alert-close" id="closeErrorBtn">×</button>
+            </div>
+
+            <!-- Success Alert -->
+            <div class="alert alert-success" id="successAlert" style="display:none">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                <span id="successMessage"></span>
+            </div>
         </div>
+    </section>
 
-        <div class="glossary-section" id="glossarySection">
-          <h3>Glosario Jurídico</h3>
-          <table class="glossary-table">
-            <thead>
-              <tr><th>Término Original</th><th>Traducción</th><th>Contexto Legal</th></tr>
-            </thead>
-            <tbody id="glossaryBody"></tbody>
-          </table>
+    <!-- Glossary Section -->
+    <section class="glossary-section" id="glosario">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Glosario de Términos Jurídicos</h2>
+                <p class="section-subtitle">Términos identificados automáticamente en su último documento traducido</p>
+            </div>
+            <div class="glossary-empty" id="glossaryEmpty">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity="0.3"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                <p>Realice una traducción para ver el glosario de términos jurídicos identificados</p>
+            </div>
+            <div class="glossary-table-wrapper" id="glossaryTableWrapper" style="display:none">
+                <div class="glossary-meta" id="glossaryMeta"></div>
+                <table class="glossary-table" id="glossaryTable">
+                    <thead>
+                        <tr>
+                            <th>Término Original</th>
+                            <th>Traducción al Español</th>
+                            <th>Contexto Jurídico</th>
+                        </tr>
+                    </thead>
+                    <tbody id="glossaryBody"></tbody>
+                </table>
+                <div class="glossary-actions">
+                    <button class="btn btn-secondary" id="downloadGlossaryBtn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Descargar Glosario CSV
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- ERROR -->
-      <div class="error-box hidden" id="errorBox">
-        <span class="error-icon">⚠️</span>
-        <span id="errorMsg"></span>
-      </div>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section class="about-section" id="acerca">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="section-title">Acerca de BarBaZ Traductor</h2>
+                    <p class="about-text">
+                        BarBaZ Traductor es una herramienta de traducción jurídica profesional desarrollada
+                        para abogados, notarios, jueces y profesionales del derecho que requieren traducciones
+                        precisas y confiables de documentos legales.
+                    </p>
+                    <p class="about-text">
+                        Utilizando modelos de inteligencia artificial de última generación especializados en
+                        lenguaje jurídico, BarBaZ Traductor preserva la estructura normativa, la numeración
+                        de cláusulas y la terminología técnica propia del derecho internacional.
+                    </p>
+                    <div class="about-features">
+                        <div class="about-feature">
+                            <div class="about-feature-icon">⚖️</div>
+                            <div>
+                                <strong>Terminología Jurídica Especializada</strong>
+                                <p>Vocabulario técnico legal preciso para cada jurisdicción</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">🔒</div>
+                            <div>
+                                <strong>Confidencialidad Profesional</strong>
+                                <p>Sus documentos se procesan de forma segura y no son almacenados</p>
+                            </div>
+                        </div>
+                        <div class="about-feature">
+                            <div class="about-feature-icon">📋</div>
+                            <div>
+                                <strong>Preservación Estructural</strong>
+                                <p>Se mantiene la numeración de artículos, cláusulas y secciones</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-card">
+                    <div class="about-logo-large">BB</div>
+                    <h3>BarBaZ Traductor</h3>
+                    <p>Traducción Jurídica Profesional</p>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <div class="stat-number">8</div>
+                            <div class="stat-label">Idiomas</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">3</div>
+                            <div class="stat-label">Formatos</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">IA</div>
+                            <div class="stat-label">Avanzada</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- ABOUT -->
-  <section class="about-section" id="acerca">
-    <div class="container about-inner">
-      <div class="about-text">
-        <h2>Acerca de BarBaZ Traductor</h2>
-        <p>BarBaZ Traductor es una herramienta profesional de traducción jurídica diseñada para abogados, notarios, traductores certificados y operadores del derecho que necesitan precisión terminológica en sus documentos.</p>
-        <p>Impulsado por inteligencia artificial de última generación, garantiza que cada cláusula, artículo y referencia normativa sea traducida con fidelidad al sistema jurídico de destino.</p>
-        <ul class="about-list">
-          <li>✓ Preservación de estructura documental</li>
-          <li>✓ Glosario automático de términos legales</li>
-          <li>✓ Soporte para múltiples idiomas</li>
-          <li>✓ Confidencialidad garantizada</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-logo">
+                    <div class="logo-monogram small">BB</div>
+                    <div>
+                        <div class="footer-brand">BarBaZ Traductor</div>
+                        <div class="footer-tagline">Traducción Jurídica Profesional</div>
+                    </div>
+                </div>
+                <div class="footer-copy">
+                    © 2024 BarBaZ Traductor. Todos los derechos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-logo">
-        <div class="logo-mark sm">BB</div>
-        <span>BarBaZ Traductor</span>
-      </div>
-      <p class="footer-copy">© 2025 BarBaZ Traductor. Todos los derechos reservados. Uso profesional exclusivo.</p>
-    </div>
-  </footer>
-
-  <script src="/static/app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
