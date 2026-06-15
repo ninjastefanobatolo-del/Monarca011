@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BarBaZ Traductor — Traducción Jurídica Profesional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-mark">BB</div>
+        <div class="logo-text">
+          <span class="logo-name">BarBaZ</span>
+          <span class="logo-sub">TRADUCTOR</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#inicio" class="nav-link">Inicio</a>
+        <a href="#traductor" class="nav-link">Traducir</a>
+        <a href="#acerca" class="nav-link">Acerca de</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="container hero-inner">
+      <div class="hero-badge">Plataforma Jurídica Profesional</div>
+      <h1 class="hero-title">Traducción de Documentos<br /><em>Legales de Precisión</em></h1>
+      <p class="hero-desc">Traduce contratos, sentencias, normativas y casos legales con terminología jurídica exacta. Diseñado para abogados y profesionales del derecho.</p>
+      <a href="#traductor" class="btn-primary">Comenzar Traducción</a>
+    </div>
+    <div class="hero-overlay"></div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="container features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3>Precisión Jurídica</h3>
+        <p>Terminología legal exacta con preservación de estructura normativa y numeración de cláusulas.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Multi-Formato</h3>
+        <p>Compatible con PDF, DOCX y TXT. Sube tu documento y recibe la traducción al instante.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📚</div>
+        <h3>Glosario Jurídico</h3>
+        <p>Cada traducción incluye un glosario de términos legales clave con su equivalente en español.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>8 Idiomas</h3>
+        <p>Inglés, Francés, Italiano, Portugués, Alemán, Árabe, Chino y Japonés → Español.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSLATOR -->
+  <section class="translator-section" id="traductor">
+    <div class="container">
+      <div class="section-header">
+        <h2>Módulo de Traducción</h2>
+        <p>Selecciona el modo de entrada y el idioma origen</p>
+      </div>
+
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab active" data-tab="text">Texto Libre</button>
+        <button class="tab" data-tab="file">Documento</button>
+      </div>
+
+      <!-- LANGUAGE SELECT -->
+      <div class="lang-bar">
+        <div class="lang-group">
+          <label>Idioma Origen</label>
+          <select id="sourceLang">
+            <option value="auto">Detectar automáticamente</option>
+            <option value="English">Inglés</option>
+            <option value="French">Francés</option>
+            <option value="Italian">Italiano</option>
+            <option value="Portuguese">Portugués</option>
+            <option value="German">Alemán</option>
+            <option value="Arabic">Árabe</option>
+            <option value="Chinese">Chino</option>
+            <option value="Japanese">Japonés</option>
+          </select>
+        </div>
+        <div class="lang-arrow">→</div>
+        <div class="lang-group">
+          <label>Idioma Destino</label>
+          <div class="lang-fixed">Español</div>
+        </div>
+      </div>
+
+      <!-- TEXT TAB -->
+      <div class="tab-panel active" id="panel-text">
+        <div class="editor-grid">
+          <div class="editor-box">
+            <div class="editor-label">Documento Original</div>
+            <textarea id="inputText" placeholder="Pegue aquí el texto del documento legal a traducir..."></textarea>
+            <div class="editor-footer">
+              <span id="inputWordCount">0 palabras</span>
+              <button class="btn-clear" onclick="clearAll()">Limpiar</button>
+            </div>
+          </div>
+          <div class="editor-box">
+            <div class="editor-label">Traducción al Español</div>
+            <div id="outputText" class="output-area"><span class="placeholder-text">La traducción aparecerá aquí...</span></div>
+            <div class="editor-footer">
+              <span id="outputWordCount">0 palabras</span>
+              <button class="btn-copy" onclick="copyTranslation()" id="copyBtn" disabled>Copiar</button>
+              <button class="btn-download" onclick="downloadTxt()" id="downloadTxtBtn" disabled>Descargar .txt</button>
+            </div>
+          </div>
+        </div>
+        <div class="translate-bar">
+          <button class="btn-translate" id="btnTranslateText" onclick="translateText()">
+            <span class="btn-icon">⚖️</span> Traducir Documento
+          </button>
+        </div>
+      </div>
+
+      <!-- FILE TAB -->
+      <div class="tab-panel" id="panel-file">
+        <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+          <div class="dropzone-icon">📂</div>
+          <p class="dropzone-title">Arrastra tu documento aquí</p>
+          <p class="dropzone-sub">o haz clic para seleccionar</p>
+          <p class="dropzone-formats">PDF · DOCX · TXT — máximo 10 MB</p>
+          <input type="file" id="fileInput" accept=".pdf,.docx,.doc,.txt" hidden />
+        </div>
+        <div id="fileInfo" class="file-info hidden">
+          <span id="fileName"></span>
+          <button class="btn-clear-file" onclick="clearFile()">✕</button>
+        </div>
+        <div class="translate-bar">
+          <button class="btn-translate" id="btnTranslateFile" onclick="translateFile()" disabled>
+            <span class="btn-icon">⚖️</span> Traducir Documento
+          </button>
+        </div>
+      </div>
+
+      <!-- LOADER -->
+      <div class="loader-overlay hidden" id="loader">
+        <div class="loader-box">
+          <div class="spinner"></div>
+          <p>Procesando traducción jurídica...</p>
+          <small>Esto puede tomar unos segundos</small>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="results hidden" id="results">
+        <div class="results-meta">
+          <div class="meta-chip" id="metaLang"></div>
+          <div class="meta-chip" id="metaWords"></div>
+        </div>
+
+        <div class="result-translated hidden" id="resultFileSection">
+          <div class="result-header">
+            <h3>Texto Traducido</h3>
+            <div class="result-actions">
+              <button class="btn-copy" onclick="copyResult()">Copiar</button>
+              <button class="btn-download" onclick="downloadResult()">Descargar .txt</button>
+            </div>
+          </div>
+          <div class="result-body" id="resultBody"></div>
+        </div>
+
+        <div class="glossary-section" id="glossarySection">
+          <h3>Glosario Jurídico</h3>
+          <table class="glossary-table">
+            <thead>
+              <tr><th>Término Original</th><th>Traducción</th><th>Contexto Legal</th></tr>
+            </thead>
+            <tbody id="glossaryBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ERROR -->
+      <div class="error-box hidden" id="errorBox">
+        <span class="error-icon">⚠️</span>
+        <span id="errorMsg"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="acerca">
+    <div class="container about-inner">
+      <div class="about-text">
+        <h2>Acerca de BarBaZ Traductor</h2>
+        <p>BarBaZ Traductor es una herramienta profesional de traducción jurídica diseñada para abogados, notarios, traductores certificados y operadores del derecho que necesitan precisión terminológica en sus documentos.</p>
+        <p>Impulsado por inteligencia artificial de última generación, garantiza que cada cláusula, artículo y referencia normativa sea traducida con fidelidad al sistema jurídico de destino.</p>
+        <ul class="about-list">
+          <li>✓ Preservación de estructura documental</li>
+          <li>✓ Glosario automático de términos legales</li>
+          <li>✓ Soporte para múltiples idiomas</li>
+          <li>✓ Confidencialidad garantizada</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <div class="logo-mark sm">BB</div>
+        <span>BarBaZ Traductor</span>
+      </div>
+      <p class="footer-copy">© 2025 BarBaZ Traductor. Todos los derechos reservados. Uso profesional exclusivo.</p>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
