@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
+<!-- MediaPipe Pose para detección de esqueleto local -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -30,6 +33,8 @@
     <button class="tab" data-tab="config">API</button>
   </nav>
 </header>
+
+<div id="api_badge" class="api-badge" title="Proveedor de IA activo"></div>
 
 <main>
 
@@ -257,7 +262,9 @@
 
     <div class="card">
       <h3>2. Feedback del Coach IA</h3>
-      <div class="frames-row" id="frames_row"></div>
+      <div class="frames-row" id="frames_row">
+        <!-- fotogramas con overlay de líneas de fuerza se insertan aquí -->
+      </div>
       <div class="ia-output" id="ia_output">
         <div class="placeholder">El análisis aparecerá aquí. Será directo, puntual y ajustado a tu perfil.</div>
       </div>
@@ -287,19 +294,56 @@
     <h2>CONFIGURACIÓN DE API</h2>
     <p>Tu API key se guarda solo en este navegador (localStorage). Nunca se envía a otro servidor.</p>
   </div>
-  <div class="card">
-    <div class="field"><label>Anthropic API Key</label>
-      <input id="api_key" type="password" placeholder="sk-ant-..." />
+  <div class="grid two">
+    <div class="card">
+      <h3>Proveedor de IA</h3>
+      <div class="field"><label>Proveedor</label>
+        <select id="api_provider">
+          <option value="gemini">Google Gemini (gratis)</option>
+          <option value="anthropic">Anthropic Claude</option>
+        </select>
+      </div>
+      <div id="gemini_fields">
+        <div class="field"><label>Google Gemini API Key</label>
+          <input id="gemini_key" type="password" placeholder="AIza..." />
+        </div>
+        <div class="field"><label>Modelo Gemini</label>
+          <select id="gemini_model">
+            <option value="gemini-2.0-flash">gemini-2.0-flash (recomendado · gratis)</option>
+            <option value="gemini-1.5-pro">gemini-1.5-pro (máxima calidad)</option>
+            <option value="gemini-1.5-flash">gemini-1.5-flash (rápido)</option>
+          </select>
+        </div>
+        <p class="hint">Consigue tu key gratis en: <strong>aistudio.google.com/apikey</strong></p>
+      </div>
+      <div id="anthropic_fields" style="display:none">
+        <div class="field"><label>Anthropic API Key</label>
+          <input id="api_key" type="password" placeholder="sk-ant-..." />
+        </div>
+        <div class="field"><label>Modelo Claude</label>
+          <select id="api_model">
+            <option value="claude-sonnet-4-6">claude-sonnet-4-6 (recomendado)</option>
+            <option value="claude-opus-4-8">claude-opus-4-8 (máxima calidad)</option>
+            <option value="claude-haiku-4-5-20251001">claude-haiku-4-5 (rápido)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-primary" id="guardar_api">GUARDAR</button>
+      <span class="hint" id="api_estado"></span>
     </div>
-    <div class="field"><label>Modelo</label>
-      <select id="api_model">
-        <option value="claude-sonnet-4-6">claude-sonnet-4-6 (recomendado)</option>
-        <option value="claude-opus-4-8">claude-opus-4-8 (máxima calidad)</option>
-        <option value="claude-haiku-4-5-20251001">claude-haiku-4-5 (rápido)</option>
-      </select>
+    <div class="card">
+      <h3>Análisis de esqueleto local</h3>
+      <p style="color:var(--text-dim);font-size:14px;line-height:1.6;margin-bottom:16px">
+        MediaPipe Pose corre <strong>dentro de tu navegador</strong>, sin enviar datos. Detecta articulaciones y dibuja sobre los fotogramas las líneas de distribución de fuerza antes de enviar a la IA.
+      </p>
+      <ul class="block-specs">
+        <li><span>Esqueleto</span><strong style="color:var(--success)">✓ Local (sin API)</strong></li>
+        <li><span>Ángulos articulares</span><strong style="color:var(--success)">✓ Automático</strong></li>
+        <li><span>Línea de fuerza</span><strong style="color:var(--success)">✓ Calculada</strong></li>
+        <li><span>Zonas de riesgo</span><strong style="color:var(--gold)">Rojo = problema</strong></li>
+        <li><span>Interpretación</span><strong style="color:var(--purple-300)">Via IA</strong></li>
+      </ul>
     </div>
-    <button class="btn-primary" id="guardar_api">GUARDAR</button>
-    <span class="hint" id="api_estado"></span>
   </div>
 </section>
 
