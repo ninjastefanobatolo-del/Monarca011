@@ -1,9 +1,20 @@
-import anthropic
 import json
 import os
+import httpx
 from dotenv import load_dotenv
 
 load_dotenv()
+
+
+def _make_client():
+    import anthropic
+    try:
+        return anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+    except TypeError:
+        return anthropic.Anthropic(
+            api_key=os.environ.get("ANTHROPIC_API_KEY"),
+            http_client=httpx.Client(),
+        )
 
 
 def translate_document(text: str, source_lang: str, target_lang: str = "Spanish") -> dict:
@@ -18,7 +29,7 @@ def translate_document(text: str, source_lang: str, target_lang: str = "Spanish"
     Returns:
         dict with translated_text, detected_language, legal_terms_glossary
     """
-    client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+    client = _make_client()
 
     system_prompt = """Eres un traductor jurídico profesional especializado en traducción de documentos legales al español. Tu tarea es traducir documentos legales con máxima precisión y fidelidad.
 

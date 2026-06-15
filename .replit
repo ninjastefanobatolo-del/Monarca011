@@ -1,0 +1,8 @@
+run = "cd barbaz-traductor/backend && pip install -r requirements.txt -q && uvicorn main:app --host 0.0.0.0 --port $PORT"
+entrypoint = "barbaz-traductor/backend/main.py"
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["sh", "-c", "cd barbaz-traductor/backend && uvicorn main:app --host 0.0.0.0 --port $PORT"]
