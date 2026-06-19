@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KAIRÓS SR · Asociación Legal</title>
+<style>
+/* ============================================
+   RESET Y VARIABLES
+   ============================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --azul: #0C1B2E;
+  --dorado: #B8922A;
+  --blanco: #F5F5F0;
+  --serif: Georgia, 'Times New Roman', serif;
+  --sans: Arial, Helvetica, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  color: var(--azul);
+  background: var(--blanco);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ============================================
+   LOGO SR — rombo doble dorado (SVG inline reusable)
+   ============================================ */
+.logo-svg { display: block; }
+
+/* ============================================
+   NAVBAR FIJO
+   ============================================ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.35s ease, padding 0.35s ease, border-color 0.35s ease;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+.navbar.scrolled {
+  background-color: var(--azul);
+  padding: 12px 40px;
+  border-bottom: 1px solid rgba(184, 146, 42, 0.25);
+}
+
+.navbar .brand { display: flex; align-items: center; gap: 12px; }
+.navbar .brand-text {
+  font-family: var(--serif);
+  color: var(--blanco);
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+}
+.nav-links a {
+  color: var(--blanco);
+  font-size: 0.9rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.25s ease;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -6px;
+  width: 0; height: 1px;
+  background: var(--dorado);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--dorado); }
+.nav-links a:hover::after { width: 100%; }
+
+.cta-btn {
+  background: var(--dorado);
+  color: var(--azul);
+  padding: 10px 22px;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid var(--dorado);
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-family: var(--sans);
+  font-weight: bold;
+}
+.cta-btn:hover {
+  background: transparent;
+  color: var(--dorado);
+}
+
+/* Hamburger mobile */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.hamburger span {
+  width: 26px;
+  height: 2px;
+  background: var(--blanco);
+  transition: 0.3s;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  background: var(--azul);
+  color: var(--blanco);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 20px 60px;
+}
+
+.hero .hero-logo { margin-bottom: 30px; }
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: 8px;
+  margin-bottom: 14px;
+  font-weight: normal;
+}
+
+.hero .subtitle {
+  font-size: 0.85rem;
+  letter-spacing: 6px;
+  color: var(--dorado);
+  margin-bottom: 50px;
+}
+
+.hero .tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  max-width: 700px;
+  margin: 0 auto 50px;
+  color: var(--blanco);
+  opacity: 0.92;
+  line-height: 1.5;
+}
+
+.hero .divider {
+  width: 60px;
+  height: 1px;
+  background: var(--dorado);
+  margin: 0 auto 50px;
+}
+
+.hero-btn {
+  display: inline-block;
+  background: var(--dorado);
+  color: var(--azul);
+  padding: 16px 40px;
+  font-size: 0.9rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: 1px solid var(--dorado);
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.hero-btn:hover {
+  background: transparent;
+  color: var(--dorado);
+}
+
+/* ============================================
+   NOSOTROS
+   ============================================ */
+.nosotros {
+  background: var(--blanco);
+  padding: 120px 40px;
+}
+.nosotros-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.section-label {
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  color: var(--dorado);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  color: var(--azul);
+  margin-bottom: 28px;
+  font-weight: normal;
+  line-height: 1.2;
+}
+
+.section-title .accent { color: var(--dorado); font-style: italic; }
+
+.nosotros p {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 18px;
+}
+
+.nosotros .kairos-meaning {
+  border-left: 2px solid var(--dorado);
+  padding-left: 20px;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--azul);
+  margin-top: 30px;
+}
+
+.nosotros-photo {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  background: var(--azul);
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.nosotros-photo::before {
+  content: 'FOTO 400×400';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--dorado);
+  letter-spacing: 4px;
+  font-size: 0.85rem;
+}
+.nosotros-photo::after {
+  content: '';
+  position: absolute;
+  top: 12px; left: 12px; right: 12px; bottom: 12px;
+  border: 1px solid var(--dorado);
+}
+
+/* ============================================
+   ÁREAS DE PRÁCTICA
+   ============================================ */
+.areas {
+  background: var(--azul);
+  color: var(--blanco);
+  padding: 120px 40px;
+  text-align: center;
+}
+
+.areas .section-title { color: var(--blanco); margin-bottom: 60px; }
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.area-card {
+  background: transparent;
+  border: 1px solid rgba(245, 245, 240, 0.15);
+  padding: 40px 24px;
+  transition: border-color 0.35s ease, transform 0.35s ease;
+  text-align: center;
+}
+.area-card:hover {
+  border-color: var(--dorado);
+  transform: translateY(-6px);
+}
+
+.area-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 20px;
+  color: var(--dorado);
+}
+.area-icon svg { width: 100%; height: 100%; }
+
+.area-card h3 {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+  color: var(--blanco);
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.area-card p {
+  font-size: 0.9rem;
+  color: rgba(245, 245, 240, 0.7);
+  line-height: 1.6;
+}
+
+/* ============================================
+   FRASE DESTACADA
+   ============================================ */
+.quote {
+  background: var(--dorado);
+  color: var(--azul);
+  padding: 100px 40px;
+  text-align: center;
+}
+.quote blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.4;
+  font-weight: normal;
+}
+.quote .mark {
+  display: block;
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+.quote cite {
+  display: block;
+  margin-top: 28px;
+  font-size: 0.85rem;
+  letter-spacing: 4px;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   CONTACTO
+   ============================================ */
+.contacto {
+  background: var(--blanco);
+  padding: 120px 40px;
+}
+.contacto-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+}
+
+.contacto-info .section-title { margin-bottom: 30px; }
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.info-item .ico {
+  width: 22px;
+  height: 22px;
+  color: var(--dorado);
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+.info-item div strong {
+  display: block;
+  color: var(--azul);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.info-item div span { color: #444; font-size: 0.95rem; }
+
+/* Formulario */
+.contact-form { display: flex; flex-direction: column; gap: 18px; }
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--azul);
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+.contact-form input:focus,
+.contact-form textarea:focus { border-color: var(--dorado); }
+.contact-form textarea { resize: vertical; min-height: 130px; }
+
+.contact-form button {
+  background: var(--azul);
+  color: var(--blanco);
+  padding: 16px;
+  border: 1px solid var(--azul);
+  cursor: pointer;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.contact-form button:hover {
+  background: var(--dorado);
+  border-color: var(--dorado);
+  color: var(--azul);
+}
+
+.form-msg {
+  font-size: 0.9rem;
+  color: var(--dorado);
+  min-height: 1.2em;
+}
+
+/* ============================================
+   WHATSAPP FLOTANTE
+   ============================================ */
+.whatsapp-float {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 58px;
+  height: 58px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+.whatsapp-float:hover { transform: scale(1.1); }
+.whatsapp-float svg { width: 32px; height: 32px; fill: white; }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--azul);
+  color: var(--blanco);
+  padding: 60px 40px 30px;
+  text-align: center;
+  border-top: 1px solid rgba(184, 146, 42, 0.2);
+}
+.footer .footer-logo { margin: 0 auto 24px; display: flex; justify-content: center; }
+.footer .social {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.footer .social a {
+  color: var(--blanco);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+.footer .social a:hover { color: var(--dorado); }
+.footer .copyright {
+  font-size: 0.8rem;
+  color: rgba(245, 245, 240, 0.5);
+  letter-spacing: 1.5px;
+}
+
+/* ============================================
+   FADE-IN ON SCROLL
+   ============================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .navbar { padding: 14px 20px; }
+  .navbar.scrolled { padding: 10px 20px; }
+  .hamburger { display: flex; }
+  .nav-links, .navbar .cta-btn {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--azul);
+    flex-direction: column;
+    padding: 20px;
+    gap: 18px;
+    border-top: 1px solid rgba(184, 146, 42, 0.25);
+  }
+  .nav-links.open, .navbar.menu-open .cta-btn {
+    display: flex;
+  }
+  .navbar.menu-open .cta-btn {
+    position: absolute;
+    top: calc(100% + 200px);
+    left: 20px; right: 20px;
+    width: auto;
+    text-align: center;
+  }
+  .nosotros-wrap,
+  .contacto-wrap {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .areas-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { letter-spacing: 5px; }
+  .nosotros, .areas, .contacto { padding: 80px 24px; }
+  .quote { padding: 70px 24px; }
+}
+
+@media (max-width: 500px) {
+  .areas-grid { grid-template-columns: 1fr; }
+  .hero { padding: 90px 20px 50px; }
+  .whatsapp-float { width: 52px; height: 52px; bottom: 18px; right: 18px; }
+  .whatsapp-float svg { width: 28px; height: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR FIJO
+     ============================================ -->
+<nav class="navbar" id="navbar">
+  <a href="#inicio" class="brand">
+    <!-- Logo SR rombo doble -->
+    <svg class="logo-svg" width="38" height="38" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="30,3 57,30 30,57 3,30" fill="none" stroke="#B8922A" stroke-width="1.5"/>
+      <polygon points="30,10 50,30 30,50 10,30" fill="none" stroke="#B8922A" stroke-width="1"/>
+      <text x="30" y="36" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#B8922A" letter-spacing="1">SR</text>
+    </svg>
+    <span class="brand-text">KAIRÓS SR</span>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#areas">Áreas</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+
+  <a href="#contacto" class="cta-btn">Consulta gratuita</a>
+
+  <button class="hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============================================
+     HERO — pantalla completa
+     ============================================ -->
+<section class="hero" id="inicio">
+  <div class="hero-logo">
+    <!-- Monograma SR grande -->
+    <svg width="110" height="110" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="30,2 58,30 30,58 2,30" fill="none" stroke="#B8922A" stroke-width="1.5"/>
+      <polygon points="30,10 50,30 30,50 10,30" fill="none" stroke="#B8922A" stroke-width="1"/>
+      <text x="30" y="37" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#B8922A" letter-spacing="2">SR</text>
+    </svg>
+  </div>
+
+  <h1>KAIRÓS SR</h1>
+  <p class="subtitle">ASOCIACIÓN LEGAL</p>
+
+  <div class="divider"></div>
+
+  <p class="tagline">"Buscamos el porqué de tu pasado, para resolver tu futuro."</p>
+
+  <a href="https://wa.me/51999999999?text=Hola%20KAIROS%20SR%2C%20quiero%20agendar%20una%20consulta" target="_blank" rel="noopener" class="hero-btn">Agenda tu consulta</a>
+</section>
+
+<!-- ============================================
+     NOSOTROS
+     ============================================ -->
+<section class="nosotros" id="nosotros">
+  <div class="nosotros-wrap">
+    <div class="fade-in">
+      <p class="section-label">Nosotros</p>
+      <h2 class="section-title">Filosofía <span class="accent">Kairós</span></h2>
+      <p>En KAIRÓS SR creemos que cada caso tiene un instante decisivo: el momento exacto en que el conocimiento del pasado se convierte en la solución del futuro. No defendemos casos, defendemos historias.</p>
+      <p>Nuestro equipo combina rigor técnico, discreción absoluta y una mirada estratégica que va más allá del expediente. Te acompañamos con la claridad de quien entiende que el derecho, ante todo, sirve a las personas.</p>
+      <div class="kairos-meaning">
+        <strong>Kairós (καιρός):</strong> en la tradición griega, el momento decisivo. El instante oportuno donde la acción correcta cambia el destino.
+      </div>
+    </div>
+    <div class="fade-in nosotros-photo"></div>
+  </div>
+</section>
+
+<!-- ============================================
+     ÁREAS DE PRÁCTICA
+     ============================================ -->
+<section class="areas" id="areas">
+  <p class="section-label fade-in">Especialidades</p>
+  <h2 class="section-title fade-in">Áreas de <span class="accent">práctica</span></h2>
+
+  <div class="areas-grid">
+    <!-- Derecho Civil -->
+    <div class="area-card fade-in">
+      <div class="area-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>
+        </svg>
+      </div>
+      <h3>Derecho Civil</h3>
+      <p>Contratos, sucesiones, familia y patrimonio. Asesoramiento integral en relaciones civiles.</p>
+    </div>
+
+    <!-- Derecho Penal -->
+    <div class="area-card fade-in">
+      <div class="area-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 3l8 4v6c0 5-4 8-8 8s-8-3-8-8V7l8-4z"/>
+        </svg>
+      </div>
+      <h3>Derecho Penal</h3>
+      <p>Defensa técnica especializada en procesos penales con estrategia y confidencialidad absoluta.</p>
+    </div>
+
+    <!-- Derecho Tributario -->
+    <div class="area-card fade-in">
+      <div class="area-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4h16v16H4z M8 9h8 M8 13h8 M8 17h5"/>
+        </svg>
+      </div>
+      <h3>Derecho Tributario</h3>
+      <p>Planeamiento fiscal, procedimientos ante SUNAT y defensa en controversias tributarias.</p>
+    </div>
+
+    <!-- Derecho Laboral -->
+    <div class="area-card fade-in">
+      <div class="area-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 7h18v13H3z M8 7V4h8v3"/>
+        </svg>
+      </div>
+      <h3>Derecho Laboral</h3>
+      <p>Relaciones laborales, despidos, beneficios sociales y litigios ante la autoridad de trabajo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FRASE DESTACADA
+     ============================================ -->
+<section class="quote">
+  <blockquote class="fade-in">
+    <span class="mark">"</span>
+    El derecho no es un código que se aplica: es una historia que se interpreta.
+    <cite>— KAIRÓS SR</cite>
+  </blockquote>
+</section>
+
+<!-- ============================================
+     CONTACTO
+     ============================================ -->
+<section class="contacto" id="contacto">
+  <div class="contacto-wrap">
+    <div class="contacto-info fade-in">
+      <p class="section-label">Contacto</p>
+      <h2 class="section-title">Conversemos sobre <span class="accent">tu caso</span></h2>
+      <p style="margin-bottom: 36px; color:#444;">Agenda una consulta inicial gratuita. Te responderemos en menos de 24 horas con total confidencialidad.</p>
+
+      <div class="info-item">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z"/></svg>
+        <div><strong>Teléfono</strong><span>+51 999 999 999</span></div>
+      </div>
+
+      <div class="info-item">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z M4 4l8 8 8-8"/></svg>
+        <div><strong>Email</strong><span>contacto@kairos-sr.com</span></div>
+      </div>
+
+      <div class="info-item">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z M12 13a3 3 0 100-6 3 3 0 000 6z"/></svg>
+        <div><strong>Oficina</strong><span>Lima, Perú</span></div>
+      </div>
+    </div>
+
+    <form class="contact-form fade-in" id="contactForm" novalidate>
+      <input type="text" name="nombre" placeholder="Nombre completo" required />
+      <input type="email" name="email" placeholder="Correo electrónico" required />
+      <input type="tel" name="telefono" placeholder="Teléfono" />
+      <textarea name="mensaje" placeholder="Cuéntanos brevemente tu caso" required></textarea>
+      <button type="submit">Enviar mensaje</button>
+      <p class="form-msg" id="formMsg"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================
+     WHATSAPP FLOTANTE
+     ============================================ -->
+<a href="https://wa.me/51999999999?text=Hola%20KAIROS%20SR" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16.003 3C9.374 3 4 8.373 4 15c0 2.385.7 4.6 1.9 6.476L4 29l7.7-1.86A12.94 12.94 0 0016 27c6.627 0 12-5.373 12-12S22.63 3 16.003 3zm0 21.8c-1.93 0-3.73-.54-5.26-1.47l-.38-.22-4.57 1.1 1.12-4.45-.25-.4A9.83 9.83 0 016.2 15c0-5.42 4.4-9.8 9.8-9.8 5.42 0 9.8 4.38 9.8 9.8s-4.4 9.8-9.8 9.8zm5.6-7.3c-.3-.15-1.78-.88-2.06-.97-.28-.1-.48-.15-.68.15-.2.3-.78.97-.96 1.17-.18.2-.35.22-.65.08-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.68-2.08-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.02-.53-.07-.15-.68-1.62-.93-2.22-.24-.58-.5-.5-.68-.5l-.58-.01c-.2 0-.52.07-.8.38-.28.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.12 3.24 5.13 4.55.72.3 1.28.48 1.72.62.72.23 1.38.2 1.9.12.58-.08 1.78-.73 2.03-1.43.25-.7.25-1.3.18-1.43-.07-.13-.27-.2-.57-.35z"/>
+  </svg>
+</a>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="footer-logo">
+    <svg width="40" height="40" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="30,3 57,30 30,57 3,30" fill="none" stroke="#B8922A" stroke-width="1.5"/>
+      <polygon points="30,10 50,30 30,50 10,30" fill="none" stroke="#B8922A" stroke-width="1"/>
+      <text x="30" y="36" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#B8922A" letter-spacing="1">SR</text>
+    </svg>
+  </div>
+  <div class="social">
+    <a href="#" target="_blank" rel="noopener">Instagram</a>
+    <a href="#" target="_blank" rel="noopener">TikTok</a>
+  </div>
+  <p class="copyright">© 2025 KAIRÓS SR · Todos los derechos reservados</p>
+</footer>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+/* ----- Navbar sólido al hacer scroll ----- */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+});
+
+/* ----- Menú hamburguesa mobile ----- */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  navbar.classList.toggle('menu-open');
+});
+// Cerrar al click en link
+navLinks.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navbar.classList.remove('menu-open');
+  });
+});
+
+/* ----- Fade-in al hacer scroll (IntersectionObserver) ----- */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ----- Validación simple del formulario ----- */
+const form = document.getElementById('contactForm');
+const formMsg = document.getElementById('formMsg');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(form);
+  const nombre = data.get('nombre').trim();
+  const email = data.get('email').trim();
+  const mensaje = data.get('mensaje').trim();
+
+  if (!nombre || !email || !mensaje) {
+    formMsg.style.color = '#c0392b';
+    formMsg.textContent = 'Por favor completa los campos obligatorios.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    formMsg.style.color = '#c0392b';
+    formMsg.textContent = 'Ingresa un email válido.';
+    return;
+  }
+
+  formMsg.style.color = '#B8922A';
+  formMsg.textContent = 'Gracias. Te contactaremos en menos de 24 horas.';
+  form.reset();
+});
+</script>
+
+</body>
+</html>
