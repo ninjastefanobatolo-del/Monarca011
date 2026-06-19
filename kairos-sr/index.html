@@ -3,7 +3,39 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KAIRÓS SR · Asociación Legal</title>
+<meta name="description" content="KAIRÓS SR · Asociación legal en Lima. Derecho civil, penal, tributario y laboral. Consulta gratuita y confidencial." />
+<meta name="keywords" content="abogados Lima, estudio jurídico, derecho penal, derecho civil, derecho tributario, derecho laboral, KAIROS SR" />
+<title>KAIRÓS SR · Asociación Legal en Lima</title>
+
+<!-- Open Graph -->
+<meta property="og:title" content="KAIRÓS SR · Asociación Legal" />
+<meta property="og:description" content="Buscamos el porqué de tu pasado, para resolver tu futuro." />
+<meta property="og:type" content="website" />
+
+<!-- Fonts premium -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "KAIRÓS SR Asociación Legal",
+  "image": "",
+  "telephone": "+51-999-999-999",
+  "email": "contacto@kairos-sr.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lima",
+    "addressCountry": "PE"
+  },
+  "url": "",
+  "priceRange": "$$"
+}
+</script>
+
 <style>
 /* ============================================
    RESET Y VARIABLES
@@ -12,10 +44,13 @@
 
 :root {
   --azul: #0C1B2E;
+  --azul-soft: #142640;
   --dorado: #B8922A;
+  --dorado-soft: #d4ad3d;
   --blanco: #F5F5F0;
-  --serif: Georgia, 'Times New Roman', serif;
-  --sans: Arial, Helvetica, sans-serif;
+  --gris: #6b6b6b;
+  --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 html { scroll-behavior: smooth; }
@@ -24,58 +59,54 @@ body {
   font-family: var(--sans);
   color: var(--azul);
   background: var(--blanco);
-  line-height: 1.6;
+  line-height: 1.65;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 img { max-width: 100%; display: block; }
 
-/* ============================================
-   LOGO SR — rombo doble dorado (SVG inline reusable)
-   ============================================ */
-.logo-svg { display: block; }
+::selection { background: var(--dorado); color: var(--azul); }
 
 /* ============================================
-   NAVBAR FIJO
+   NAVBAR
    ============================================ */
 .navbar {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 1000;
-  padding: 18px 40px;
+  padding: 20px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: background-color 0.35s ease, padding 0.35s ease, border-color 0.35s ease;
+  transition: all 0.4s ease;
   background-color: transparent;
   border-bottom: 1px solid transparent;
 }
-
 .navbar.scrolled {
-  background-color: var(--azul);
-  padding: 12px 40px;
+  background-color: rgba(12, 27, 46, 0.97);
+  backdrop-filter: blur(8px);
+  padding: 12px 48px;
   border-bottom: 1px solid rgba(184, 146, 42, 0.25);
 }
 
-.navbar .brand { display: flex; align-items: center; gap: 12px; }
-.navbar .brand-text {
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-text {
   font-family: var(--serif);
   color: var(--blanco);
-  font-size: 1.1rem;
-  letter-spacing: 3px;
+  font-size: 1.05rem;
+  letter-spacing: 4px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 36px;
-}
+.nav-links { display: flex; gap: 38px; }
 .nav-links a {
   color: var(--blanco);
-  font-size: 0.9rem;
-  letter-spacing: 1.5px;
+  font-size: 0.82rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  font-weight: 400;
   position: relative;
   transition: color 0.25s ease;
 }
@@ -93,102 +124,162 @@ img { max-width: 100%; display: block; }
 .cta-btn {
   background: var(--dorado);
   color: var(--azul);
-  padding: 10px 22px;
-  font-size: 0.85rem;
-  letter-spacing: 1.5px;
+  padding: 11px 24px;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
   border: 1px solid var(--dorado);
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
   font-family: var(--sans);
-  font-weight: bold;
+  font-weight: 600;
 }
-.cta-btn:hover {
-  background: transparent;
-  color: var(--dorado);
-}
+.cta-btn:hover { background: transparent; color: var(--dorado); }
 
-/* Hamburger mobile */
 .hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  background: none;
-  border: none;
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; background: none; border: none;
 }
-.hamburger span {
-  width: 26px;
-  height: 2px;
-  background: var(--blanco);
-  transition: 0.3s;
-}
+.hamburger span { width: 26px; height: 2px; background: var(--blanco); transition: 0.3s; }
 
 /* ============================================
    HERO
    ============================================ */
 .hero {
   min-height: 100vh;
-  background: var(--azul);
+  background:
+    radial-gradient(ellipse at top, #142640 0%, var(--azul) 70%),
+    var(--azul);
   color: var(--blanco);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 100px 20px 60px;
+  padding: 120px 24px 80px;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero .hero-logo { margin-bottom: 30px; }
+/* Patrón sutil de fondo */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(184,146,42,0.06) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(184,146,42,0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.hero > * { position: relative; z-index: 1; }
+
+.hero-logo { margin-bottom: 34px; animation: drawIn 1.5s ease-out; }
+@keyframes drawIn {
+  from { opacity: 0; transform: scale(0.85) rotate(-5deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
 
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  letter-spacing: 8px;
-  margin-bottom: 14px;
-  font-weight: normal;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  letter-spacing: 10px;
+  margin-bottom: 16px;
+  font-weight: 500;
 }
 
 .hero .subtitle {
-  font-size: 0.85rem;
-  letter-spacing: 6px;
+  font-size: 0.82rem;
+  letter-spacing: 8px;
   color: var(--dorado);
-  margin-bottom: 50px;
+  margin-bottom: 46px;
+  font-weight: 300;
+}
+
+.divider {
+  width: 60px; height: 1px;
+  background: var(--dorado);
+  margin: 0 auto 46px;
 }
 
 .hero .tagline {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  max-width: 700px;
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  max-width: 720px;
   margin: 0 auto 50px;
-  color: var(--blanco);
-  opacity: 0.92;
+  opacity: 0.93;
   line-height: 1.5;
+  font-weight: 400;
 }
 
-.hero .divider {
-  width: 60px;
-  height: 1px;
-  background: var(--dorado);
-  margin: 0 auto 50px;
-}
-
+.hero-buttons { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
 .hero-btn {
   display: inline-block;
   background: var(--dorado);
   color: var(--azul);
-  padding: 16px 40px;
-  font-size: 0.9rem;
+  padding: 16px 36px;
+  font-size: 0.85rem;
   letter-spacing: 3px;
   text-transform: uppercase;
   border: 1px solid var(--dorado);
-  font-weight: bold;
+  font-weight: 600;
   transition: all 0.3s ease;
 }
-.hero-btn:hover {
-  background: transparent;
+.hero-btn:hover { background: transparent; color: var(--dorado); }
+.hero-btn.ghost { background: transparent; color: var(--blanco); border-color: rgba(245,245,240,0.3); }
+.hero-btn.ghost:hover { border-color: var(--dorado); color: var(--dorado); }
+
+/* Trust strip bajo el hero */
+.trust-strip {
+  margin-top: 60px;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(245,245,240,0.55);
+}
+.trust-strip span { display: flex; align-items: center; gap: 8px; }
+.trust-strip span::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--dorado);
+  border-radius: 50%;
+}
+
+/* ============================================
+   CIFRAS
+   ============================================ */
+.cifras {
+  background: var(--blanco);
+  padding: 80px 40px;
+  border-bottom: 1px solid rgba(12,27,46,0.08);
+}
+.cifras-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+.cifra .num {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
   color: var(--dorado);
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.cifra .label {
+  font-size: 0.78rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--azul);
+  font-weight: 500;
 }
 
 /* ============================================
@@ -196,45 +287,40 @@ img { max-width: 100%; display: block; }
    ============================================ */
 .nosotros {
   background: var(--blanco);
-  padding: 120px 40px;
+  padding: 130px 40px;
 }
 .nosotros-wrap {
-  max-width: 1100px;
+  max-width: 1150px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 90px;
   align-items: center;
 }
 
 .section-label {
-  font-size: 0.8rem;
-  letter-spacing: 4px;
+  font-size: 0.75rem;
+  letter-spacing: 5px;
   color: var(--dorado);
   text-transform: uppercase;
   margin-bottom: 18px;
+  font-weight: 500;
 }
-
 .section-title {
   font-family: var(--serif);
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-size: clamp(2rem, 3.4vw, 2.8rem);
   color: var(--azul);
-  margin-bottom: 28px;
-  font-weight: normal;
+  margin-bottom: 30px;
+  font-weight: 500;
   line-height: 1.2;
 }
-
 .section-title .accent { color: var(--dorado); font-style: italic; }
 
-.nosotros p {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 18px;
-}
+.nosotros p { font-size: 1rem; color: #444; margin-bottom: 18px; }
 
-.nosotros .kairos-meaning {
+.kairos-meaning {
   border-left: 2px solid var(--dorado);
-  padding-left: 20px;
+  padding: 4px 0 4px 22px;
   font-family: var(--serif);
   font-style: italic;
   color: var(--azul);
@@ -242,18 +328,15 @@ img { max-width: 100%; display: block; }
 }
 
 .nosotros-photo {
-  width: 100%;
-  max-width: 400px;
-  height: 400px;
+  width: 100%; max-width: 420px; height: 480px;
   background: var(--azul);
   position: relative;
   margin: 0 auto;
   overflow: hidden;
 }
 .nosotros-photo::before {
-  content: 'FOTO 400×400';
-  position: absolute;
-  top: 50%; left: 50%;
+  content: 'FOTO 420×480';
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   color: var(--dorado);
   letter-spacing: 4px;
@@ -261,8 +344,7 @@ img { max-width: 100%; display: block; }
 }
 .nosotros-photo::after {
   content: '';
-  position: absolute;
-  top: 12px; left: 12px; right: 12px; bottom: 12px;
+  position: absolute; inset: 14px;
   border: 1px solid var(--dorado);
 }
 
@@ -272,53 +354,281 @@ img { max-width: 100%; display: block; }
 .areas {
   background: var(--azul);
   color: var(--blanco);
-  padding: 120px 40px;
+  padding: 130px 40px;
   text-align: center;
 }
-
-.areas .section-title { color: var(--blanco); margin-bottom: 60px; }
+.areas .section-title { color: var(--blanco); margin-bottom: 14px; }
+.areas .intro {
+  max-width: 600px;
+  margin: 0 auto 70px;
+  color: rgba(245,245,240,0.7);
+  font-size: 1rem;
+}
 
 .areas-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
-  max-width: 1200px;
+  gap: 24px;
+  max-width: 1250px;
   margin: 0 auto;
 }
-
 .area-card {
   background: transparent;
-  border: 1px solid rgba(245, 245, 240, 0.15);
-  padding: 40px 24px;
-  transition: border-color 0.35s ease, transform 0.35s ease;
-  text-align: center;
+  border: 1px solid rgba(245,245,240,0.12);
+  padding: 44px 26px;
+  transition: all 0.4s ease;
+  text-align: left;
+  position: relative;
 }
 .area-card:hover {
   border-color: var(--dorado);
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  background: rgba(184,146,42,0.04);
 }
-
 .area-icon {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 20px;
+  width: 44px; height: 44px;
+  margin-bottom: 24px;
   color: var(--dorado);
 }
 .area-icon svg { width: 100%; height: 100%; }
-
 .area-card h3 {
   font-family: var(--serif);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   margin-bottom: 14px;
   color: var(--blanco);
-  font-weight: normal;
-  letter-spacing: 1px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
-
 .area-card p {
   font-size: 0.9rem;
-  color: rgba(245, 245, 240, 0.7);
+  color: rgba(245,245,240,0.68);
+  line-height: 1.65;
+  margin-bottom: 18px;
+}
+.area-card .link {
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  color: var(--dorado);
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.area-card:hover .link { opacity: 1; }
+
+/* ============================================
+   PROCESO
+   ============================================ */
+.proceso {
+  background: var(--blanco);
+  padding: 130px 40px;
+  text-align: center;
+}
+.proceso .intro {
+  max-width: 600px;
+  margin: 0 auto 70px;
+  color: var(--gris);
+}
+.steps {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  position: relative;
+}
+.step { text-align: left; position: relative; padding-top: 20px; }
+.step .num {
+  font-family: var(--serif);
+  font-size: 3.5rem;
+  color: var(--dorado);
+  opacity: 0.4;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.step h4 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--azul);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+.step p { font-size: 0.9rem; color: var(--gris); line-height: 1.65; }
+
+/* ============================================
+   EQUIPO
+   ============================================ */
+.equipo {
+  background: #f9f8f1;
+  padding: 130px 40px;
+  text-align: center;
+}
+.equipo .intro { max-width: 600px; margin: 0 auto 70px; color: var(--gris); }
+.team-grid {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.team-card { text-align: center; }
+.team-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: var(--azul);
+  position: relative;
+  margin-bottom: 24px;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+.team-photo::before {
+  content: 'FOTO';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--dorado);
+  letter-spacing: 5px;
+  font-size: 0.8rem;
+}
+.team-photo::after {
+  content: ''; position: absolute; inset: 12px;
+  border: 1px solid rgba(184,146,42,0.4);
+}
+.team-card:hover .team-photo { transform: translateY(-6px); }
+.team-card h4 {
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  color: var(--azul);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.team-card .role {
+  font-size: 0.78rem;
+  letter-spacing: 3px;
+  color: var(--dorado);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.team-card .cal { font-size: 0.85rem; color: var(--gris); margin-bottom: 14px; }
+.team-card .social-mini { display: flex; gap: 14px; justify-content: center; }
+.team-card .social-mini a {
+  color: var(--azul);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+.team-card .social-mini a:hover { color: var(--dorado); border-color: var(--dorado); }
+
+/* ============================================
+   CASOS DE ÉXITO
+   ============================================ */
+.casos {
+  background: var(--azul);
+  color: var(--blanco);
+  padding: 130px 40px;
+  text-align: center;
+}
+.casos .section-title { color: var(--blanco); }
+.casos .intro { max-width: 600px; margin: 0 auto 70px; color: rgba(245,245,240,0.7); }
+.casos-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.caso {
+  background: var(--azul-soft);
+  border: 1px solid rgba(245,245,240,0.08);
+  padding: 36px 28px;
+  text-align: left;
+  transition: all 0.4s ease;
+}
+.caso:hover { border-color: var(--dorado); transform: translateY(-6px); }
+.caso .tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: var(--dorado);
+  text-transform: uppercase;
+  border: 1px solid var(--dorado);
+  padding: 4px 10px;
+  margin-bottom: 20px;
+}
+.caso h4 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+  color: var(--blanco);
+  font-weight: 500;
+}
+.caso p { font-size: 0.9rem; color: rgba(245,245,240,0.7); margin-bottom: 18px; }
+.caso .resultado {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  color: var(--dorado);
+  font-weight: 500;
+}
+
+/* ============================================
+   TESTIMONIOS
+   ============================================ */
+.testimonios {
+  background: var(--blanco);
+  padding: 130px 40px;
+  text-align: center;
+}
+.testimonios .intro { max-width: 600px; margin: 0 auto 60px; color: var(--gris); }
+.testi-grid {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.testi {
+  background: #fafaf3;
+  padding: 36px 30px;
+  text-align: left;
+  border-top: 3px solid var(--dorado);
+  transition: transform 0.3s ease;
+}
+.testi:hover { transform: translateY(-6px); }
+.testi .stars {
+  color: var(--dorado);
+  letter-spacing: 3px;
+  margin-bottom: 18px;
+  font-size: 1rem;
+}
+.testi p {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--azul);
+  font-size: 1rem;
+  margin-bottom: 24px;
   line-height: 1.6;
+}
+.testi .author { display: flex; align-items: center; gap: 14px; }
+.testi .avatar {
+  width: 46px; height: 46px;
+  background: var(--azul);
+  color: var(--dorado);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+}
+.testi .author-info strong {
+  display: block;
+  color: var(--azul);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.testi .author-info span {
+  font-size: 0.78rem;
+  color: var(--gris);
+  letter-spacing: 1px;
 }
 
 /* ============================================
@@ -327,60 +637,102 @@ img { max-width: 100%; display: block; }
 .quote {
   background: var(--dorado);
   color: var(--azul);
-  padding: 100px 40px;
+  padding: 110px 40px;
   text-align: center;
 }
 .quote blockquote {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   max-width: 900px;
   margin: 0 auto;
   line-height: 1.4;
-  font-weight: normal;
+  font-weight: 400;
 }
 .quote .mark {
   display: block;
   font-size: 4rem;
   line-height: 1;
   margin-bottom: 10px;
-  opacity: 0.6;
+  opacity: 0.55;
 }
 .quote cite {
   display: block;
   margin-top: 28px;
-  font-size: 0.85rem;
-  letter-spacing: 4px;
+  font-size: 0.82rem;
+  letter-spacing: 5px;
   font-style: normal;
   text-transform: uppercase;
 }
 
 /* ============================================
+   FAQ
+   ============================================ */
+.faq {
+  background: var(--blanco);
+  padding: 130px 40px;
+}
+.faq-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.faq .section-label, .faq .section-title { text-align: center; }
+.faq .section-title { margin-bottom: 60px; }
+
+.faq-item {
+  border-bottom: 1px solid rgba(12,27,46,0.12);
+  padding: 24px 0;
+  cursor: pointer;
+}
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--azul);
+  font-weight: 500;
+}
+.faq-q .ico {
+  width: 22px; height: 22px;
+  color: var(--dorado);
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.faq-item.open .faq-q .ico { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  color: var(--gris);
+  font-size: 0.95rem;
+}
+.faq-item.open .faq-a { max-height: 300px; padding-top: 16px; }
+
+/* ============================================
    CONTACTO
    ============================================ */
 .contacto {
-  background: var(--blanco);
-  padding: 120px 40px;
+  background: #f9f8f1;
+  padding: 130px 40px;
 }
 .contacto-wrap {
-  max-width: 1100px;
+  max-width: 1150px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 70px;
+  gap: 80px;
 }
-
 .contacto-info .section-title { margin-bottom: 30px; }
+.contacto-info .lead { margin-bottom: 40px; color: var(--gris); font-size: 1rem; }
 
 .info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  display: flex; align-items: flex-start; gap: 16px;
   margin-bottom: 24px;
 }
 .info-item .ico {
-  width: 22px;
-  height: 22px;
+  width: 22px; height: 22px;
   color: var(--dorado);
   flex-shrink: 0;
   margin-top: 4px;
@@ -388,17 +740,25 @@ img { max-width: 100%; display: block; }
 .info-item div strong {
   display: block;
   color: var(--azul);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 4px;
+  font-weight: 600;
 }
 .info-item div span { color: #444; font-size: 0.95rem; }
 
-/* Formulario */
-.contact-form { display: flex; flex-direction: column; gap: 18px; }
+.contact-form {
+  background: var(--blanco);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-top: 3px solid var(--dorado);
+}
 .contact-form input,
-.contact-form textarea {
+.contact-form textarea,
+.contact-form select {
   width: 100%;
   padding: 14px 16px;
   border: 1px solid #ddd;
@@ -410,9 +770,9 @@ img { max-width: 100%; display: block; }
   transition: border-color 0.25s ease;
 }
 .contact-form input:focus,
-.contact-form textarea:focus { border-color: var(--dorado); }
+.contact-form textarea:focus,
+.contact-form select:focus { border-color: var(--dorado); }
 .contact-form textarea { resize: vertical; min-height: 130px; }
-
 .contact-form button {
   background: var(--azul);
   color: var(--blanco);
@@ -421,20 +781,22 @@ img { max-width: 100%; display: block; }
   cursor: pointer;
   letter-spacing: 3px;
   text-transform: uppercase;
-  font-size: 0.85rem;
-  font-weight: bold;
+  font-size: 0.82rem;
+  font-weight: 600;
   transition: all 0.3s ease;
+  font-family: var(--sans);
 }
 .contact-form button:hover {
   background: var(--dorado);
   border-color: var(--dorado);
   color: var(--azul);
 }
-
-.form-msg {
-  font-size: 0.9rem;
-  color: var(--dorado);
-  min-height: 1.2em;
+.form-msg { font-size: 0.9rem; color: var(--dorado); min-height: 1.2em; }
+.privacy-note {
+  font-size: 0.75rem;
+  color: var(--gris);
+  text-align: center;
+  margin-top: -4px;
 }
 
 /* ============================================
@@ -442,21 +804,29 @@ img { max-width: 100%; display: block; }
    ============================================ */
 .whatsapp-float {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
-  width: 58px;
-  height: 58px;
+  bottom: 25px; right: 25px;
+  width: 60px; height: 60px;
   background: #25D366;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   z-index: 999;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 18px rgba(37,211,102,0.4);
   transition: transform 0.3s ease;
 }
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #25D366;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
 .whatsapp-float:hover { transform: scale(1.1); }
-.whatsapp-float svg { width: 32px; height: 32px; fill: white; }
+.whatsapp-float svg { width: 32px; height: 32px; fill: white; position: relative; z-index: 1; }
 
 /* ============================================
    FOOTER
@@ -464,29 +834,50 @@ img { max-width: 100%; display: block; }
 .footer {
   background: var(--azul);
   color: var(--blanco);
-  padding: 60px 40px 30px;
-  text-align: center;
-  border-top: 1px solid rgba(184, 146, 42, 0.2);
+  padding: 80px 40px 30px;
+  border-top: 1px solid rgba(184,146,42,0.2);
 }
-.footer .footer-logo { margin: 0 auto 24px; display: flex; justify-content: center; }
-.footer .social {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  margin-bottom: 28px;
+.footer-grid {
+  max-width: 1150px;
+  margin: 0 auto 50px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 50px;
 }
-.footer .social a {
-  color: var(--blanco);
-  font-size: 0.85rem;
-  letter-spacing: 2px;
+.footer-col h5 {
+  font-family: var(--serif);
+  color: var(--dorado);
+  font-size: 0.9rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  margin-bottom: 22px;
+  font-weight: 500;
+}
+.footer-col p, .footer-col a {
+  color: rgba(245,245,240,0.7);
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 10px;
   transition: color 0.25s ease;
 }
-.footer .social a:hover { color: var(--dorado); }
-.footer .copyright {
-  font-size: 0.8rem;
-  color: rgba(245, 245, 240, 0.5);
-  letter-spacing: 1.5px;
+.footer-col a:hover { color: var(--dorado); }
+.footer-brand { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.footer-brand-text {
+  font-family: var(--serif);
+  color: var(--blanco);
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+}
+
+.footer-bottom {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding-top: 30px;
+  border-top: 1px solid rgba(245,245,240,0.1);
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(245,245,240,0.45);
+  letter-spacing: 1px;
 }
 
 /* ============================================
@@ -497,17 +888,21 @@ img { max-width: 100%; display: block; }
   transform: translateY(30px);
   transition: opacity 0.9s ease, transform 0.9s ease;
 }
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* ============================================
    RESPONSIVE
    ============================================ */
+@media (max-width: 1000px) {
+  .areas-grid, .casos-grid, .testi-grid, .team-grid, .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
 @media (max-width: 900px) {
   .navbar { padding: 14px 20px; }
-  .navbar.scrolled { padding: 10px 20px; }
+  .navbar.scrolled { padding: 12px 20px; }
   .hamburger { display: flex; }
   .nav-links, .navbar .cta-btn {
     display: none;
@@ -515,51 +910,51 @@ img { max-width: 100%; display: block; }
     top: 100%; left: 0; right: 0;
     background: var(--azul);
     flex-direction: column;
-    padding: 20px;
-    gap: 18px;
-    border-top: 1px solid rgba(184, 146, 42, 0.25);
+    padding: 24px;
+    gap: 20px;
+    border-top: 1px solid rgba(184,146,42,0.25);
   }
-  .nav-links.open, .navbar.menu-open .cta-btn {
-    display: flex;
-  }
+  .nav-links.open { display: flex; }
   .navbar.menu-open .cta-btn {
+    display: block;
     position: absolute;
-    top: calc(100% + 200px);
-    left: 20px; right: 20px;
-    width: auto;
+    top: calc(100% + 230px);
+    left: 24px; right: 24px;
     text-align: center;
   }
-  .nosotros-wrap,
-  .contacto-wrap {
-    grid-template-columns: 1fr;
-    gap: 50px;
+  .nosotros-wrap, .contacto-wrap { grid-template-columns: 1fr; gap: 60px; }
+  .cifras-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { letter-spacing: 6px; }
+  .nosotros, .areas, .contacto, .proceso, .equipo, .casos, .testimonios, .faq {
+    padding: 90px 24px;
   }
-  .areas-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero h1 { letter-spacing: 5px; }
-  .nosotros, .areas, .contacto { padding: 80px 24px; }
-  .quote { padding: 70px 24px; }
+  .quote { padding: 80px 24px; }
 }
 
-@media (max-width: 500px) {
-  .areas-grid { grid-template-columns: 1fr; }
-  .hero { padding: 90px 20px 50px; }
-  .whatsapp-float { width: 52px; height: 52px; bottom: 18px; right: 18px; }
+@media (max-width: 560px) {
+  .areas-grid, .casos-grid, .testi-grid, .team-grid, .steps,
+  .footer-grid { grid-template-columns: 1fr; }
+  .hero { padding: 100px 20px 60px; }
+  .trust-strip { gap: 16px; font-size: 0.65rem; }
+  .whatsapp-float { width: 54px; height: 54px; bottom: 18px; right: 18px; }
   .whatsapp-float svg { width: 28px; height: 28px; }
+  .contact-form { padding: 28px 22px; }
+  .hero-buttons { flex-direction: column; width: 100%; max-width: 280px; }
+  .hero-btn { width: 100%; }
 }
 </style>
 </head>
 <body>
 
 <!-- ============================================
-     NAVBAR FIJO
+     NAVBAR
      ============================================ -->
 <nav class="navbar" id="navbar">
   <a href="#inicio" class="brand">
-    <!-- Logo SR rombo doble -->
-    <svg class="logo-svg" width="38" height="38" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+    <svg width="38" height="38" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
       <polygon points="30,3 57,30 30,57 3,30" fill="none" stroke="#B8922A" stroke-width="1.5"/>
       <polygon points="30,10 50,30 30,50 10,30" fill="none" stroke="#B8922A" stroke-width="1"/>
-      <text x="30" y="36" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#B8922A" letter-spacing="1">SR</text>
+      <text x="30" y="36" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="15" fill="#B8922A" letter-spacing="1">SR</text>
     </svg>
     <span class="brand-text">KAIRÓS SR</span>
   </a>
@@ -568,6 +963,9 @@ img { max-width: 100%; display: block; }
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#areas">Áreas</a></li>
+    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="#casos">Casos</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 
@@ -579,15 +977,14 @@ img { max-width: 100%; display: block; }
 </nav>
 
 <!-- ============================================
-     HERO — pantalla completa
+     HERO
      ============================================ -->
 <section class="hero" id="inicio">
   <div class="hero-logo">
-    <!-- Monograma SR grande -->
-    <svg width="110" height="110" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+    <svg width="120" height="120" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
       <polygon points="30,2 58,30 30,58 2,30" fill="none" stroke="#B8922A" stroke-width="1.5"/>
       <polygon points="30,10 50,30 30,50 10,30" fill="none" stroke="#B8922A" stroke-width="1"/>
-      <text x="30" y="37" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#B8922A" letter-spacing="2">SR</text>
+      <text x="30" y="37" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="18" fill="#B8922A" letter-spacing="2">SR</text>
     </svg>
   </div>
 
@@ -598,7 +995,41 @@ img { max-width: 100%; display: block; }
 
   <p class="tagline">"Buscamos el porqué de tu pasado, para resolver tu futuro."</p>
 
-  <a href="https://wa.me/51999999999?text=Hola%20KAIROS%20SR%2C%20quiero%20agendar%20una%20consulta" target="_blank" rel="noopener" class="hero-btn">Agenda tu consulta</a>
+  <div class="hero-buttons">
+    <a href="https://wa.me/51999999999?text=Hola%20KAIROS%20SR%2C%20quiero%20agendar%20una%20consulta" target="_blank" rel="noopener" class="hero-btn">Agenda tu consulta</a>
+    <a href="#areas" class="hero-btn ghost">Conoce nuestras áreas</a>
+  </div>
+
+  <div class="trust-strip">
+    <span>15+ años de experiencia</span>
+    <span>500+ casos resueltos</span>
+    <span>Atención 24/7</span>
+    <span>Confidencialidad absoluta</span>
+  </div>
+</section>
+
+<!-- ============================================
+     CIFRAS (contador animado)
+     ============================================ -->
+<section class="cifras">
+  <div class="cifras-grid">
+    <div class="cifra fade-in">
+      <div class="num" data-count="15">0</div>
+      <div class="label">Años de experiencia</div>
+    </div>
+    <div class="cifra fade-in">
+      <div class="num" data-count="500" data-suffix="+">0</div>
+      <div class="label">Casos resueltos</div>
+    </div>
+    <div class="cifra fade-in">
+      <div class="num" data-count="98" data-suffix="%">0</div>
+      <div class="label">Tasa de éxito</div>
+    </div>
+    <div class="cifra fade-in">
+      <div class="num" data-count="24" data-suffix="/7">0</div>
+      <div class="label">Atención disponible</div>
+    </div>
+  </div>
 </section>
 
 <!-- ============================================
@@ -625,50 +1056,198 @@ img { max-width: 100%; display: block; }
 <section class="areas" id="areas">
   <p class="section-label fade-in">Especialidades</p>
   <h2 class="section-title fade-in">Áreas de <span class="accent">práctica</span></h2>
+  <p class="intro fade-in">Cobertura legal integral con especialistas dedicados en cada materia.</p>
 
   <div class="areas-grid">
-    <!-- Derecho Civil -->
     <div class="area-card fade-in">
       <div class="area-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg>
       </div>
       <h3>Derecho Civil</h3>
-      <p>Contratos, sucesiones, familia y patrimonio. Asesoramiento integral en relaciones civiles.</p>
+      <p>Contratos, sucesiones, familia, propiedad y patrimonio. Asesoramiento integral en relaciones civiles.</p>
+      <a href="#contacto" class="link">Consultar →</a>
     </div>
 
-    <!-- Derecho Penal -->
     <div class="area-card fade-in">
       <div class="area-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M12 3l8 4v6c0 5-4 8-8 8s-8-3-8-8V7l8-4z"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v6c0 5-4 8-8 8s-8-3-8-8V7l8-4z"/></svg>
       </div>
       <h3>Derecho Penal</h3>
       <p>Defensa técnica especializada en procesos penales con estrategia y confidencialidad absoluta.</p>
+      <a href="#contacto" class="link">Consultar →</a>
     </div>
 
-    <!-- Derecho Tributario -->
     <div class="area-card fade-in">
       <div class="area-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M4 4h16v16H4z M8 9h8 M8 13h8 M8 17h5"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z M8 9h8 M8 13h8 M8 17h5"/></svg>
       </div>
       <h3>Derecho Tributario</h3>
       <p>Planeamiento fiscal, procedimientos ante SUNAT y defensa en controversias tributarias.</p>
+      <a href="#contacto" class="link">Consultar →</a>
     </div>
 
-    <!-- Derecho Laboral -->
     <div class="area-card fade-in">
       <div class="area-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M3 7h18v13H3z M8 7V4h8v3"/>
-        </svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18v13H3z M8 7V4h8v3"/></svg>
       </div>
       <h3>Derecho Laboral</h3>
-      <p>Relaciones laborales, despidos, beneficios sociales y litigios ante la autoridad de trabajo.</p>
+      <p>Relaciones laborales, despidos arbitrarios, beneficios sociales y litigios laborales.</p>
+      <a href="#contacto" class="link">Consultar →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PROCESO
+     ============================================ -->
+<section class="proceso">
+  <p class="section-label fade-in" style="text-align:center;">Cómo trabajamos</p>
+  <h2 class="section-title fade-in" style="text-align:center;">Un <span class="accent">proceso</span> claro y humano</h2>
+  <p class="intro fade-in">Cuatro pasos sencillos para resolver tu caso con tranquilidad y transparencia.</p>
+
+  <div class="steps">
+    <div class="step fade-in">
+      <div class="num">01</div>
+      <h4>Consulta inicial</h4>
+      <p>Conversamos sobre tu caso sin compromiso. Escuchamos y entendemos tu situación.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="num">02</div>
+      <h4>Diagnóstico legal</h4>
+      <p>Analizamos los hechos, documentos y precedentes. Te damos un informe claro de viabilidad.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="num">03</div>
+      <h4>Estrategia</h4>
+      <p>Diseñamos la mejor ruta legal y te explicamos cada paso con honorarios transparentes.</p>
+    </div>
+    <div class="step fade-in">
+      <div class="num">04</div>
+      <h4>Resolución</h4>
+      <p>Ejecutamos la estrategia con seguimiento permanente hasta lograr el resultado.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     EQUIPO
+     ============================================ -->
+<section class="equipo" id="equipo">
+  <p class="section-label fade-in">Nuestro equipo</p>
+  <h2 class="section-title fade-in">Abogados con <span class="accent">propósito</span></h2>
+  <p class="intro fade-in">Profesionales colegiados en el CAL con formación nacional e internacional.</p>
+
+  <div class="team-grid">
+    <div class="team-card fade-in">
+      <div class="team-photo"></div>
+      <h4>Dr. Nombre Apellido</h4>
+      <p class="role">Socio Fundador</p>
+      <p class="cal">Especialista en Derecho Penal · CAL 00000</p>
+      <div class="social-mini">
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">Email</a>
+      </div>
+    </div>
+
+    <div class="team-card fade-in">
+      <div class="team-photo"></div>
+      <h4>Dra. Nombre Apellido</h4>
+      <p class="role">Socia Fundadora</p>
+      <p class="cal">Especialista en Derecho Civil · CAL 00000</p>
+      <div class="social-mini">
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">Email</a>
+      </div>
+    </div>
+
+    <div class="team-card fade-in">
+      <div class="team-photo"></div>
+      <h4>Dr. Nombre Apellido</h4>
+      <p class="role">Asociado Senior</p>
+      <p class="cal">Especialista en Derecho Tributario · CAL 00000</p>
+      <div class="social-mini">
+        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" target="_blank" rel="noopener">Email</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     CASOS DE ÉXITO
+     ============================================ -->
+<section class="casos" id="casos">
+  <p class="section-label fade-in">Casos de éxito</p>
+  <h2 class="section-title fade-in">Resultados que <span class="accent">hablan</span></h2>
+  <p class="intro fade-in">Una muestra de cómo el momento adecuado y la estrategia correcta cambian destinos.</p>
+
+  <div class="casos-grid">
+    <div class="caso fade-in">
+      <span class="tag">Derecho Penal</span>
+      <h4>Sobreseimiento por defensa técnica</h4>
+      <p>Caso de denuncia infundada. Logramos archivar el proceso en etapa intermedia tras demostrar inconsistencias probatorias.</p>
+      <div class="resultado">Archivo definitivo</div>
+    </div>
+
+    <div class="caso fade-in">
+      <span class="tag">Derecho Laboral</span>
+      <h4>Indemnización por despido arbitrario</h4>
+      <p>Trabajadora despedida sin causa justa. Acreditamos vínculo laboral y vulneración de derechos.</p>
+      <div class="resultado">S/ 180,000 recuperados</div>
+    </div>
+
+    <div class="caso fade-in">
+      <span class="tag">Derecho Tributario</span>
+      <h4>Nulidad de resolución SUNAT</h4>
+      <p>Empresa con resolución de determinación irregular. Logramos su nulidad en el Tribunal Fiscal.</p>
+      <div class="resultado">S/ 420,000 anulados</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     TESTIMONIOS
+     ============================================ -->
+<section class="testimonios">
+  <p class="section-label fade-in" style="text-align:center;">Testimonios</p>
+  <h2 class="section-title fade-in" style="text-align:center;">Lo que dicen <span class="accent">nuestros clientes</span></h2>
+  <p class="intro fade-in" style="text-align:center;">La confianza es el resultado, no el punto de partida.</p>
+
+  <div class="testi-grid">
+    <div class="testi fade-in">
+      <div class="stars">★ ★ ★ ★ ★</div>
+      <p>"Me explicaron cada paso con claridad y me devolvieron la tranquilidad. Profesionales en todo el sentido de la palabra."</p>
+      <div class="author">
+        <div class="avatar">MR</div>
+        <div class="author-info">
+          <strong>María R.</strong>
+          <span>Caso laboral · Lima</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi fade-in">
+      <div class="stars">★ ★ ★ ★ ★</div>
+      <p>"Encontré en KAIRÓS SR algo difícil hoy: abogados honestos. Resolvieron un caso tributario que parecía perdido."</p>
+      <div class="author">
+        <div class="avatar">JC</div>
+        <div class="author-info">
+          <strong>Jorge C.</strong>
+          <span>Caso tributario · Miraflores</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi fade-in">
+      <div class="stars">★ ★ ★ ★ ★</div>
+      <p>"Discreción, rapidez y resultados. Nunca me sentí solo en el proceso. Los recomiendo con los ojos cerrados."</p>
+      <div class="author">
+        <div class="avatar">LP</div>
+        <div class="author-info">
+          <strong>Luis P.</strong>
+          <span>Caso penal · San Isidro</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -685,6 +1264,64 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ============================================
+     FAQ
+     ============================================ -->
+<section class="faq" id="faq">
+  <div class="faq-wrap">
+    <p class="section-label fade-in">Preguntas frecuentes</p>
+    <h2 class="section-title fade-in">Resolvemos tus <span class="accent">dudas</span></h2>
+
+    <div class="faq-item fade-in">
+      <div class="faq-q">
+        ¿La primera consulta tiene costo?
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <div class="faq-a">No. La consulta inicial es completamente gratuita y sin compromiso. Te escuchamos y evaluamos tu caso antes de cualquier acuerdo de honorarios.</div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <div class="faq-q">
+        ¿Cómo manejan la confidencialidad?
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <div class="faq-a">Todo lo que compartes está protegido por el secreto profesional regulado por el Código de Ética del CAL. Trabajamos con protocolos estrictos de manejo de información.</div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <div class="faq-q">
+        ¿Cómo se calculan los honorarios?
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <div class="faq-a">Trabajamos con tarifas claras según la complejidad y duración del caso. Te entregamos una propuesta por escrito antes de iniciar y sin sorpresas.</div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <div class="faq-q">
+        ¿Atienden casos fuera de Lima?
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <div class="faq-a">Sí. Tenemos cobertura a nivel nacional mediante red de corresponsales y trabajamos casos virtualmente con plataformas seguras.</div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <div class="faq-q">
+        ¿Cuánto puede demorar mi caso?
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <div class="faq-a">Depende de la materia y de los tiempos judiciales. En la consulta inicial te damos una estimación realista y te mantenemos informado en cada etapa.</div>
+    </div>
+
+    <div class="faq-item fade-in">
+      <div class="faq-q">
+        ¿Puedo agendar por WhatsApp?
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      </div>
+      <div class="faq-a">Por supuesto. Tenemos un canal de WhatsApp atendido por nuestro equipo legal. Click en el botón verde flotante para escribirnos ahora mismo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
      CONTACTO
      ============================================ -->
 <section class="contacto" id="contacto">
@@ -692,7 +1329,7 @@ img { max-width: 100%; display: block; }
     <div class="contacto-info fade-in">
       <p class="section-label">Contacto</p>
       <h2 class="section-title">Conversemos sobre <span class="accent">tu caso</span></h2>
-      <p style="margin-bottom: 36px; color:#444;">Agenda una consulta inicial gratuita. Te responderemos en menos de 24 horas con total confidencialidad.</p>
+      <p class="lead">Agenda una consulta inicial gratuita. Te responderemos en menos de 24 horas con total confidencialidad.</p>
 
       <div class="info-item">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.72 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0122 16.92z"/></svg>
@@ -706,17 +1343,31 @@ img { max-width: 100%; display: block; }
 
       <div class="info-item">
         <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z M12 13a3 3 0 100-6 3 3 0 000 6z"/></svg>
-        <div><strong>Oficina</strong><span>Lima, Perú</span></div>
+        <div><strong>Oficina</strong><span>Av. Principal 000, Lima · Perú</span></div>
+      </div>
+
+      <div class="info-item">
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        <div><strong>Horarios</strong><span>Lun–Vie 9:00–19:00 · Sáb 9:00–13:00</span></div>
       </div>
     </div>
 
     <form class="contact-form fade-in" id="contactForm" novalidate>
-      <input type="text" name="nombre" placeholder="Nombre completo" required />
-      <input type="email" name="email" placeholder="Correo electrónico" required />
-      <input type="tel" name="telefono" placeholder="Teléfono" />
-      <textarea name="mensaje" placeholder="Cuéntanos brevemente tu caso" required></textarea>
+      <input type="text" name="nombre" placeholder="Nombre completo *" required />
+      <input type="email" name="email" placeholder="Correo electrónico *" required />
+      <input type="tel" name="telefono" placeholder="Teléfono / WhatsApp" />
+      <select name="area" required>
+        <option value="">Selecciona un área *</option>
+        <option>Derecho Civil</option>
+        <option>Derecho Penal</option>
+        <option>Derecho Tributario</option>
+        <option>Derecho Laboral</option>
+        <option>Otro / No estoy seguro</option>
+      </select>
+      <textarea name="mensaje" placeholder="Cuéntanos brevemente tu caso *" required></textarea>
       <button type="submit">Enviar mensaje</button>
       <p class="form-msg" id="formMsg"></p>
+      <p class="privacy-note">Al enviar aceptas nuestra política de privacidad. Tus datos están protegidos por la Ley 29733.</p>
     </form>
   </div>
 </section>
@@ -734,18 +1385,48 @@ img { max-width: 100%; display: block; }
      FOOTER
      ============================================ -->
 <footer class="footer">
-  <div class="footer-logo">
-    <svg width="40" height="40" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="30,3 57,30 30,57 3,30" fill="none" stroke="#B8922A" stroke-width="1.5"/>
-      <polygon points="30,10 50,30 30,50 10,30" fill="none" stroke="#B8922A" stroke-width="1"/>
-      <text x="30" y="36" text-anchor="middle" font-family="Georgia, serif" font-size="16" fill="#B8922A" letter-spacing="1">SR</text>
-    </svg>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-brand">
+        <svg width="40" height="40" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="30,3 57,30 30,57 3,30" fill="none" stroke="#B8922A" stroke-width="1.5"/>
+          <polygon points="30,10 50,30 30,50 10,30" fill="none" stroke="#B8922A" stroke-width="1"/>
+          <text x="30" y="36" text-anchor="middle" font-family="Playfair Display, Georgia, serif" font-size="15" fill="#B8922A" letter-spacing="1">SR</text>
+        </svg>
+        <span class="footer-brand-text">KAIRÓS SR</span>
+      </div>
+      <p>Asociación legal con sede en Lima. Buscamos el porqué de tu pasado, para resolver tu futuro.</p>
+    </div>
+
+    <div class="footer-col">
+      <h5>Navegación</h5>
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#areas">Áreas</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+
+    <div class="footer-col">
+      <h5>Áreas</h5>
+      <a href="#areas">Derecho Civil</a>
+      <a href="#areas">Derecho Penal</a>
+      <a href="#areas">Derecho Tributario</a>
+      <a href="#areas">Derecho Laboral</a>
+    </div>
+
+    <div class="footer-col">
+      <h5>Síguenos</h5>
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" target="_blank" rel="noopener">TikTok</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://wa.me/51999999999" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
   </div>
-  <div class="social">
-    <a href="#" target="_blank" rel="noopener">Instagram</a>
-    <a href="#" target="_blank" rel="noopener">TikTok</a>
+
+  <div class="footer-bottom">
+    © 2025 KAIRÓS SR · Todos los derechos reservados · Política de privacidad · Términos
   </div>
-  <p class="copyright">© 2025 KAIRÓS SR · Todos los derechos reservados</p>
 </footer>
 
 <!-- ============================================
@@ -766,7 +1447,6 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('open');
   navbar.classList.toggle('menu-open');
 });
-// Cerrar al click en link
 navLinks.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
     navLinks.classList.remove('open');
@@ -774,7 +1454,7 @@ navLinks.querySelectorAll('a').forEach(a => {
   });
 });
 
-/* ----- Fade-in al hacer scroll (IntersectionObserver) ----- */
+/* ----- Fade-in al hacer scroll ----- */
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -783,10 +1463,40 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.15 });
-
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-/* ----- Validación simple del formulario ----- */
+/* ----- Contador animado de cifras ----- */
+const counters = document.querySelectorAll('.num[data-count]');
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = +el.dataset.count;
+      const suffix = el.dataset.suffix || '';
+      const duration = 1800;
+      const start = performance.now();
+      function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const val = Math.floor(p * target);
+        el.textContent = val + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+      countObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.4 });
+counters.forEach(c => countObserver.observe(c));
+
+/* ----- FAQ acordeón ----- */
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('click', () => {
+    item.classList.toggle('open');
+  });
+});
+
+/* ----- Validación del formulario ----- */
 const form = document.getElementById('contactForm');
 const formMsg = document.getElementById('formMsg');
 form.addEventListener('submit', (e) => {
@@ -794,9 +1504,10 @@ form.addEventListener('submit', (e) => {
   const data = new FormData(form);
   const nombre = data.get('nombre').trim();
   const email = data.get('email').trim();
+  const area = data.get('area');
   const mensaje = data.get('mensaje').trim();
 
-  if (!nombre || !email || !mensaje) {
+  if (!nombre || !email || !area || !mensaje) {
     formMsg.style.color = '#c0392b';
     formMsg.textContent = 'Por favor completa los campos obligatorios.';
     return;
@@ -806,7 +1517,6 @@ form.addEventListener('submit', (e) => {
     formMsg.textContent = 'Ingresa un email válido.';
     return;
   }
-
   formMsg.style.color = '#B8922A';
   formMsg.textContent = 'Gracias. Te contactaremos en menos de 24 horas.';
   form.reset();
