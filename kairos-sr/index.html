@@ -881,6 +881,255 @@ img { max-width: 100%; display: block; }
 }
 
 /* ============================================
+   BOLETINES / ACTUALIDAD LEGAL
+   ============================================ */
+.boletines {
+  background: #f9f8f1;
+  padding: 130px 40px;
+}
+.boletines-head {
+  max-width: 1150px;
+  margin: 0 auto 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.boletines-head .left { max-width: 600px; }
+.boletines-head .intro { color: var(--gris); margin-top: 10px; }
+
+.btn-admin {
+  background: transparent;
+  color: var(--azul);
+  border: 1px solid var(--azul);
+  padding: 12px 22px;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-admin:hover { background: var(--azul); color: var(--dorado); }
+
+.boletines-filters {
+  max-width: 1150px;
+  margin: 0 auto 40px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.filter-chip {
+  background: transparent;
+  border: 1px solid rgba(12,27,46,0.2);
+  color: var(--azul);
+  padding: 8px 18px;
+  font-size: 0.78rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--sans);
+}
+.filter-chip:hover { border-color: var(--dorado); color: var(--dorado); }
+.filter-chip.active { background: var(--azul); color: var(--dorado); border-color: var(--azul); }
+
+.boletines-grid {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.boletin-card {
+  background: var(--blanco);
+  border: 1px solid rgba(12,27,46,0.08);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s ease;
+  position: relative;
+  text-align: left;
+}
+.boletin-card:hover {
+  border-color: var(--dorado);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(12,27,46,0.08);
+}
+
+.boletin-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.boletin-cat { color: var(--dorado); font-weight: 600; }
+.boletin-fecha { color: var(--gris); }
+
+.boletin-card h4 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--azul);
+  margin-bottom: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.boletin-card .resumen {
+  font-size: 0.92rem;
+  color: var(--gris);
+  margin-bottom: 22px;
+  line-height: 1.65;
+  flex-grow: 1;
+}
+.boletin-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid rgba(12,27,46,0.08);
+}
+.boletin-link {
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  color: var(--azul);
+  text-transform: uppercase;
+  font-weight: 600;
+  border-bottom: 1px solid var(--dorado);
+  padding-bottom: 2px;
+  transition: color 0.25s ease;
+}
+.boletin-link:hover { color: var(--dorado); }
+.boletin-pdf {
+  color: var(--dorado);
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.boletin-pdf svg { width: 14px; height: 14px; }
+
+.btn-delete {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(192,57,43,0.1);
+  color: #c0392b;
+  border: none;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+body.admin-mode .btn-delete { display: flex; }
+body.admin-mode .boletin-card { border-style: dashed; }
+
+.boletines-empty {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gris);
+  font-family: var(--serif);
+  font-style: italic;
+}
+
+/* ============================================
+   MODAL (admin boletines)
+   ============================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12,27,46,0.85);
+  backdrop-filter: blur(6px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--blanco);
+  max-width: 540px;
+  width: 100%;
+  padding: 44px 38px;
+  border-top: 4px solid var(--dorado);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+.modal h3 {
+  font-family: var(--serif);
+  color: var(--azul);
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.modal .sub {
+  color: var(--gris);
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: none; border: none;
+  font-size: 1.8rem;
+  color: var(--azul);
+  cursor: pointer;
+  line-height: 1;
+}
+.modal form { display: flex; flex-direction: column; gap: 14px; }
+.modal input, .modal textarea, .modal select {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #ddd;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 0.93rem;
+  color: var(--azul);
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+.modal input:focus, .modal textarea:focus, .modal select:focus { border-color: var(--dorado); }
+.modal textarea { resize: vertical; min-height: 100px; }
+.modal-buttons { display: flex; gap: 10px; margin-top: 6px; }
+.modal-buttons button {
+  flex: 1;
+  padding: 14px;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--azul);
+  transition: all 0.3s ease;
+}
+.modal-buttons .save { background: var(--azul); color: var(--blanco); }
+.modal-buttons .save:hover { background: var(--dorado); border-color: var(--dorado); color: var(--azul); }
+.modal-buttons .cancel { background: transparent; color: var(--azul); }
+.modal-buttons .cancel:hover { background: var(--azul); color: var(--blanco); }
+
+.admin-hint {
+  font-size: 0.78rem;
+  color: var(--gris);
+  text-align: center;
+  margin-top: 18px;
+  font-style: italic;
+}
+
+/* ============================================
    FADE-IN ON SCROLL
    ============================================ */
 .fade-in {
@@ -894,7 +1143,7 @@ img { max-width: 100%; display: block; }
    RESPONSIVE
    ============================================ */
 @media (max-width: 1000px) {
-  .areas-grid, .casos-grid, .testi-grid, .team-grid, .steps {
+  .areas-grid, .casos-grid, .testi-grid, .team-grid, .steps, .boletines-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -925,7 +1174,7 @@ img { max-width: 100%; display: block; }
   .nosotros-wrap, .contacto-wrap { grid-template-columns: 1fr; gap: 60px; }
   .cifras-grid { grid-template-columns: repeat(2, 1fr); }
   .hero h1 { letter-spacing: 6px; }
-  .nosotros, .areas, .contacto, .proceso, .equipo, .casos, .testimonios, .faq {
+  .nosotros, .areas, .contacto, .proceso, .equipo, .casos, .testimonios, .faq, .boletines {
     padding: 90px 24px;
   }
   .quote { padding: 80px 24px; }
@@ -933,7 +1182,7 @@ img { max-width: 100%; display: block; }
 
 @media (max-width: 560px) {
   .areas-grid, .casos-grid, .testi-grid, .team-grid, .steps,
-  .footer-grid { grid-template-columns: 1fr; }
+  .footer-grid, .boletines-grid { grid-template-columns: 1fr; }
   .hero { padding: 100px 20px 60px; }
   .trust-strip { gap: 16px; font-size: 0.65rem; }
   .whatsapp-float { width: 54px; height: 54px; bottom: 18px; right: 18px; }
@@ -965,6 +1214,7 @@ img { max-width: 100%; display: block; }
     <li><a href="#areas">Áreas</a></li>
     <li><a href="#equipo">Equipo</a></li>
     <li><a href="#casos">Casos</a></li>
+    <li><a href="#boletines">Boletines</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
@@ -1206,6 +1456,65 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ============================================
+     BOLETINES / ACTUALIDAD LEGAL
+     ============================================ -->
+<section class="boletines" id="boletines">
+  <div class="boletines-head">
+    <div class="left fade-in">
+      <p class="section-label">Actualidad legal</p>
+      <h2 class="section-title">Boletines y <span class="accent">reformas</span></h2>
+      <p class="intro">Análisis breves de las últimas reformas normativas, jurisprudencia relevante y pronunciamientos institucionales.</p>
+    </div>
+    <button class="btn-admin fade-in" id="btnAdmin">+ Nuevo boletín</button>
+  </div>
+
+  <div class="boletines-filters fade-in" id="boletinesFilters">
+    <button class="filter-chip active" data-cat="todos">Todos</button>
+    <button class="filter-chip" data-cat="Civil">Civil</button>
+    <button class="filter-chip" data-cat="Penal">Penal</button>
+    <button class="filter-chip" data-cat="Tributario">Tributario</button>
+    <button class="filter-chip" data-cat="Laboral">Laboral</button>
+    <button class="filter-chip" data-cat="Constitucional">Constitucional</button>
+  </div>
+
+  <div class="boletines-grid" id="boletinesGrid">
+    <!-- Renderizado dinámicamente por JS -->
+  </div>
+
+  <p class="admin-hint">Atajo administrador: presiona <strong>Ctrl + Shift + A</strong> para activar/desactivar modo edición.</p>
+</section>
+
+<!-- ============================================
+     MODAL — Nuevo boletín
+     ============================================ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <button class="modal-close" id="modalClose" aria-label="Cerrar">×</button>
+    <h3>Publicar boletín</h3>
+    <p class="sub">Completa los datos para añadir un nuevo análisis o reforma normativa.</p>
+    <form id="boletinForm">
+      <input type="text" name="titulo" placeholder="Título del boletín *" required maxlength="120" />
+      <select name="categoria" required>
+        <option value="">Categoría *</option>
+        <option>Civil</option>
+        <option>Penal</option>
+        <option>Tributario</option>
+        <option>Laboral</option>
+        <option>Constitucional</option>
+      </select>
+      <input type="date" name="fecha" required />
+      <textarea name="resumen" placeholder="Resumen breve (2-3 líneas) *" required maxlength="280"></textarea>
+      <input type="url" name="enlace" placeholder="Enlace externo (opcional)" />
+      <input type="url" name="pdf" placeholder="URL del PDF descargable (opcional)" />
+      <div class="modal-buttons">
+        <button type="button" class="cancel" id="btnCancel">Cancelar</button>
+        <button type="submit" class="save">Publicar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============================================
      TESTIMONIOS
      ============================================ -->
 <section class="testimonios">
@@ -1404,6 +1713,7 @@ img { max-width: 100%; display: block; }
       <a href="#nosotros">Nosotros</a>
       <a href="#areas">Áreas</a>
       <a href="#equipo">Equipo</a>
+      <a href="#boletines">Boletines</a>
       <a href="#contacto">Contacto</a>
     </div>
 
@@ -1521,6 +1831,179 @@ form.addEventListener('submit', (e) => {
   formMsg.textContent = 'Gracias. Te contactaremos en menos de 24 horas.';
   form.reset();
 });
+
+/* ============================================
+   BOLETINES — gestión con localStorage
+   ============================================ */
+const STORAGE_KEY = 'kairos_boletines_v1';
+const grid = document.getElementById('boletinesGrid');
+const modal = document.getElementById('modalOverlay');
+const btnAdmin = document.getElementById('btnAdmin');
+const btnCancel = document.getElementById('btnCancel');
+const modalClose = document.getElementById('modalClose');
+const boletinForm = document.getElementById('boletinForm');
+const filtersWrap = document.getElementById('boletinesFilters');
+
+let currentFilter = 'todos';
+
+/* Boletines por defecto (semilla) */
+const defaultBoletines = [
+  {
+    id: 1,
+    titulo: 'Modificaciones al Código Procesal Penal: cambios en la prisión preventiva',
+    categoria: 'Penal',
+    fecha: '2025-09-15',
+    resumen: 'Análisis de las recientes modificaciones que endurecen los requisitos para dictar prisión preventiva y sus implicancias prácticas en defensa técnica.',
+    enlace: '',
+    pdf: ''
+  },
+  {
+    id: 2,
+    titulo: 'Nuevo régimen MYPE Tributario 2025: lo que debes saber',
+    categoria: 'Tributario',
+    fecha: '2025-08-28',
+    resumen: 'SUNAT publica modificaciones al régimen MYPE con nuevos umbrales de ingresos y obligaciones formales. Resumen ejecutivo para empresarios.',
+    enlace: '',
+    pdf: ''
+  },
+  {
+    id: 3,
+    titulo: 'Reposición laboral: criterio del TC sobre despidos fraudulentos',
+    categoria: 'Laboral',
+    fecha: '2025-07-10',
+    resumen: 'El Tribunal Constitucional reafirma la procedencia de la reposición en despidos fraudulentos y aclara la carga probatoria del trabajador.',
+    enlace: '',
+    pdf: ''
+  }
+];
+
+function loadBoletines() {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored) return JSON.parse(stored);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultBoletines));
+  return defaultBoletines;
+}
+
+function saveBoletines(arr) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+}
+
+function formatDate(iso) {
+  const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  const d = new Date(iso);
+  return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function renderBoletines() {
+  const all = loadBoletines().sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
+  const list = currentFilter === 'todos' ? all : all.filter(b => b.categoria === currentFilter);
+  grid.innerHTML = '';
+
+  if (!list.length) {
+    grid.innerHTML = '<p class="boletines-empty">No hay boletines en esta categoría todavía.</p>';
+    return;
+  }
+
+  list.forEach(b => {
+    const card = document.createElement('article');
+    card.className = 'boletin-card';
+    card.innerHTML = `
+      <button class="btn-delete" data-id="${b.id}" title="Eliminar">×</button>
+      <div class="boletin-meta">
+        <span class="boletin-cat">${b.categoria}</span>
+        <span class="boletin-fecha">${formatDate(b.fecha)}</span>
+      </div>
+      <h4>${escapeHtml(b.titulo)}</h4>
+      <p class="resumen">${escapeHtml(b.resumen)}</p>
+      <div class="boletin-actions">
+        ${b.enlace
+          ? `<a href="${b.enlace}" target="_blank" rel="noopener" class="boletin-link">Leer más →</a>`
+          : `<span class="boletin-link" style="opacity:0.5;cursor:default;border-color:transparent;">Próximamente</span>`}
+        ${b.pdf
+          ? `<a href="${b.pdf}" target="_blank" rel="noopener" class="boletin-pdf">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              PDF
+            </a>`
+          : ''}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  /* eventos de borrado */
+  grid.querySelectorAll('.btn-delete').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = +btn.dataset.id;
+      if (confirm('¿Eliminar este boletín?')) {
+        const updated = loadBoletines().filter(b => b.id !== id);
+        saveBoletines(updated);
+        renderBoletines();
+      }
+    });
+  });
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+/* Filtros */
+filtersWrap.addEventListener('click', (e) => {
+  const chip = e.target.closest('.filter-chip');
+  if (!chip) return;
+  filtersWrap.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  currentFilter = chip.dataset.cat;
+  renderBoletines();
+});
+
+/* Abrir / cerrar modal */
+function openModal() {
+  modal.classList.add('open');
+  boletinForm.querySelector('input[name="fecha"]').value = new Date().toISOString().split('T')[0];
+}
+function closeModal() {
+  modal.classList.remove('open');
+  boletinForm.reset();
+}
+btnAdmin.addEventListener('click', openModal);
+btnCancel.addEventListener('click', closeModal);
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+/* Guardar nuevo boletín */
+boletinForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = new FormData(boletinForm);
+  const nuevo = {
+    id: Date.now(),
+    titulo: data.get('titulo').trim(),
+    categoria: data.get('categoria'),
+    fecha: data.get('fecha'),
+    resumen: data.get('resumen').trim(),
+    enlace: data.get('enlace').trim(),
+    pdf: data.get('pdf').trim()
+  };
+  if (!nuevo.titulo || !nuevo.categoria || !nuevo.fecha || !nuevo.resumen) return;
+  const all = loadBoletines();
+  all.push(nuevo);
+  saveBoletines(all);
+  closeModal();
+  renderBoletines();
+});
+
+/* Modo admin (toggle con Ctrl+Shift+A) — muestra botones de eliminar */
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+    document.body.classList.toggle('admin-mode');
+  }
+});
+
+/* Render inicial */
+renderBoletines();
 </script>
 
 </body>
